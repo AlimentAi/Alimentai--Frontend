@@ -3,6 +3,7 @@ import Todo from "./pages/todo/Todo"
 import NotFound from "./pages/notfound/NotFound"
 import { NavBar } from "./components/navBar/NavBar"
 import Footer from "./components/footer/Footer"
+import Home from "./pages/home/Home"
 
 function App() {
 
@@ -11,8 +12,8 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path='/' element={<Todo />} />
-          <Route path='/home' element={<Todo />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Todo />} />
           <Route path='/cadastrar' element={<Todo />} />
           <Route path='/sobre' element={<Todo />} />

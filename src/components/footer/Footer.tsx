@@ -5,7 +5,7 @@ function Footer() {
         <footer className="text-center border-t-2">
             <div className='flex w-full justify-center pt-3'>
                 <div className="mb-3 flex justify-center">
-                    <a href='https://www.google.com.br' target='_blank' className="mx-2">
+                    <a href='mailto:ecommercealimentai@gmail.com' target='_blank' className="mx-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -17,7 +17,7 @@ function Footer() {
                                 clipRule="evenodd" />
                         </svg>
                     </a>
-                    <a href='https://www.github.com' target='_blank' className="mx-4">
+                    <a href='https://github.com/AlimentAi/Alimentai--Frontend' target='_blank' className="mx-4">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-4 w-4"
@@ -34,7 +34,7 @@ function Footer() {
                 className="px-4 flex gap-2 justify-center text-center">
                 © 2024 Copyright: 
                 <a
-                    href="https://github.com/KNMeira/Generation-PI-Ecommerce/tree/main"
+                    href="https://github.com/AlimentAi/Alimentai--Frontend"
                 > Grupo 6 do Concord</a>
             </div>
         </footer>
