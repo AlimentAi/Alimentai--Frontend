@@ -8,7 +8,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'image-Login': "url('/src/assets/Image-login.png')",
+        'image-login': "url('/src/assets/image-login.png')",
+        'image-cadastrar': "url('/src/assets/image-cadastrar.png')",
         'icon-voltar': "url('/src/assets/button-voltar.png')"
       }
     },
