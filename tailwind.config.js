@@ -6,7 +6,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'image-Login': "url('/src/assets/Image-login.png')",
+        'icon-voltar': "url('/src/assets/button-voltar.png')"
+      }
+    },
   },
   plugins: [],
 }
