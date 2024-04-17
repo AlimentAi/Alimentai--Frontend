@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: '127.0.0.1:8080'
+    baseURL: 'https://generation-pi-ecommerce.onrender.com'
 })
 
 export const cadastrarUsuario = async(dados: Object, setDados: Function) => {
@@ -10,7 +10,7 @@ export const cadastrarUsuario = async(dados: Object, setDados: Function) => {
 }
 
 export const logarUsuario = async(dados: Object, setDados: Function) => {
-    const resposta = await api.post('usuarios/logar', dados)
+    const resposta = await api.post('/usuarios/logar', dados)
     setDados(resposta.data)
 }
 
