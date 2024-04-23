@@ -20,7 +20,7 @@ export function NavBar() {
         setTheme('dark')
     }
 
-    let html = document.querySelector('html')
+    const html = document.querySelector('html')
     if (html) {
       html.classList.remove('dark', 'light')
       html.classList.add(theme)
@@ -41,8 +41,8 @@ export function NavBar() {
   }, [])
 
   useEffect(() => {
-    let navbar = document.querySelector('#navbar')
-    let navbarLogo = document.querySelector('#navbar-logo')
+    const navbar = document.querySelector('#navbar')
+    const navbarLogo = document.querySelector('#navbar-logo')
     if (link.pathname.includes('/login') || link.pathname.includes('/cadastrar')) {
       navbar?.classList.add('absolute')
       navbar?.classList.remove('shadow-lg')
@@ -78,6 +78,8 @@ export function NavBar() {
             <li><Link to='/login' className='hover:text-[#c42342] duration-500 p-4'>Login</Link></li> }
           { !link.pathname.includes('cadastrar') &&
             <li><Link to='/cadastrar' className='hover:text-[#c42342] duration-500 p-4'>Registre-se</Link></li> }
+          { !link.pathname.includes('cadastrar') &&
+            <li><Link to='/cadastroCategoria' className='hover:text-[#c42342] duration-500 p-4'>Cadastrar categoria</Link></li> }
         </ul>
       </nav>
     </header>
