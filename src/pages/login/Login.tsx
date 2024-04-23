@@ -38,7 +38,7 @@ export function Login() {
     <div className="w-full h-screen flex">
       <div className="w-[50%] h-full bg-image-login bg-no-repeat bg-cover"></div>
       <div className="w-[50%] h-full flex flex-col justify-center items-start p-4">
-        <Link to='/home' className="w-28">
+        <Link to='/home' className="w-28 z-50">
           <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
             <CaretLeft size={40} />
             <span className="">Voltar</span>

@@ -14,27 +14,17 @@ function App() {
     <>
       <AuthProvider>
         <BrowserRouter>
+          <NavBar />
           <Routes>
-            <Route path='/' element={
-              <>
-                <NavBar/>
-                <Home />
-                <Footer />
-              </>
-            } />
-            <Route path='/home' element={
-              <>
-                <NavBar/>
-                <Home />
-                <Footer />
-              </>
-            } />
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
             <Route path='/login' element={<Login/>} />
             <Route path='/cadastrar' element={<Cadastrar />} />
             <Route path='/sobre' element={<Todo />} />
             <Route path='/contato' element={<Todo />} />
             <Route path='/*' element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </AuthProvider>
     </>
