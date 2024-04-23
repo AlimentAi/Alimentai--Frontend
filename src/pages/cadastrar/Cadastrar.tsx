@@ -1,11 +1,11 @@
 import { CaretLeft } from "@phosphor-icons/react";
 import Logo from "../../assets/logo.png"
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from 'react';
 import Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
 
-export function Cadastrar(){
+export function Cadastrar() {
   let navigate = useNavigate()
 
   const [confirmarSenha, setConfirmarSenha] = useState("")
@@ -46,7 +46,7 @@ export function Cadastrar(){
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (confirmarSenha === usuario.senha && usuario.senha.length >- 8) {
+    if (confirmarSenha === usuario.senha && usuario.senha.length > - 8) {
       try {
         await cadastrarUsuario(usuario, setUsuarioResposta)
         alert('Usuário cadastrado com sucesso')
@@ -61,20 +61,20 @@ export function Cadastrar(){
     }
   }
 
-  return(
+  return (
     <div className="w-full h-screen flex">
       <div className="w-[50%] h-full">
         <div className="w-[50%] h-full bg-image-cadastrar bg-no-repeat bg-cover bg-center fixed"></div>
       </div>
       <div className="w-[50%] h-full flex flex-col items-start p-4">
-        <Link to='/home' className="w-28">
+        <Link to='/home' className="w-28 z-50">
           <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
             <CaretLeft size={40} />
             <span className="">Voltar</span>
           </button>
         </Link>
 
-        <form className="w-full flex flex-wrap justify-center items-center gap-4" onSubmit={cadastrarNovoUsuario}>
+        <form className="w-full flex flex-wrap justify-center items-center gap-4 pb-16 pt-8" onSubmit={cadastrarNovoUsuario}>
           <div className="w-[80%] flex flex-col justify-center items-center gap-4">
             <div className="w-[90%] justify-center flex items-center">
               <h1 className="text-3xl font-bold">CADASTRE-SE</h1>
@@ -88,13 +88,13 @@ export function Cadastrar(){
                 className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Seu nome / Nome da empresa"
                 name="nome"
-                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
               <input
                 type="email"
                 className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="E-mail"
                 name="email"
-                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
             </div>
 
             <div className="w-[90%] flex flex-col items-start gap-4">
@@ -104,13 +104,13 @@ export function Cadastrar(){
                 className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Sua senha"
                 name="senha"
-                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
               <input
                 type="password"
                 className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Confirme sua senha"
                 name="confirmarSenha"
-                onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}/>
+                onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)} />
               <span className=" text-[#cfcccc]">Sua senha deve ter entre 8 e 48 caracteres e incluir, pelo menos, uma letra minúscula, uma letra maiúscula e um número e não pode conter espaços.</span>
             </div>
 
