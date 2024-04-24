@@ -3,13 +3,13 @@ import { DNA } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import Produto from '../../models/Produto';
-import Categoria from '../../models/Categoria'; // Importe o modelo de Categoria
+import Categoria from '../../models/Categoria';
 import { buscar } from '../../services/Service';
 import CardProduto from './CardProduto';
 
 function ListaProdutos() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
-  const [categorias, setCategorias] = useState<Categoria[]>([]); // Estado para armazenar as categorias
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtroProduto, setFiltroProduto] = useState<string>("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
 
@@ -55,7 +55,7 @@ function ListaProdutos() {
 
   useEffect(() => {
     buscarProdutos();
-    buscarCategorias(); // Busque as categorias ao carregar a página
+    buscarCategorias();
   }, [token]);
 
   const handleFiltrarProdutos = (e: React.ChangeEvent<HTMLInputElement>) => {
