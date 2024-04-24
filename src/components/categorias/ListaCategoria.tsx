@@ -74,7 +74,7 @@ function ListaCategoria() {
         <div className="container flex flex-col">
           {categorias.length !== 0 && <>
             <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold self-start py-3 mx-20'>COMPRE POR</span>
-            <div className="bg-green-100 dark:bg-green-900 py-7 px-10 mb-10 flex items-center rounded-full">
+            <div className="bg-[#EBFBEA] dark:bg-[#445844] py-7 px-10 mb-10 flex items-center rounded-full">
               <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold mr-4'>CATEGORIAS</span>
               <select
                 name="categoria"
@@ -93,9 +93,12 @@ function ListaCategoria() {
                 placeholder="Pesquisar por categoria"
                 value={filtroCategoria}
                 onChange={handleFiltrarCategorias}
-                className='border-slate-800 rounded bg-white dark:bg-green-950 ml-auto px-3 py-1 ml-200 duration-300'
+                className='border-slate-800 rounded bg-white dark:bg-[#394B3E] ml-auto px-3 py-1 ml-200 duration-300'
                 style={{ marginRight: '20px', width: '400px' }}
               />
+              <Link to='/cadastrarCategoria'>
+                <button className='m-4 p-2 border rounded-lg border-black dark:border-white'>Cadastrar nova Categoria</button>
+              </Link>
             </div></>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categoriasFiltradas.map((categoria) => ( 
@@ -104,8 +107,6 @@ function ListaCategoria() {
           </div>
         </div>
       </div>
-
-      <Link to='/cadastrarCategoria'><button className='m-4 p-2 border rounded-lg border-black dark:border-white'>Cadastrar nova Categoria</button></Link>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import Usuario from "./Usuario";
 import Categoria from "./Categoria";
 
-export default interface Postagem {
+export default interface Produto {
     id: number;
     nome: string;
     descricao: string;

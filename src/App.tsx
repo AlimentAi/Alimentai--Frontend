@@ -10,6 +10,7 @@ import { Cadastrar } from "./pages/cadastrar/Cadastrar"
 import DeletarCategoria from "./components/categorias/DeletarCategoria"
 import { FormularioCategoria } from "./components/categorias/FormularioCategoria"
 import ListaCategoria from "./components/categorias/ListaCategoria"
+import ListaProdutos from "./components/produtos/ListaProdutos"
 import Sobre from "./pages/sobre/Sobre"
 import { useContext } from "react"
 
@@ -29,7 +30,7 @@ function App() {
           <Route path='/cadastrar' element={<Cadastrar />} />
           <Route path='/sobre' element={<Sobre />} />
           <Route path='/contato' element={<Todo />} />
-          <Route path='/listaProdutos' element={<Todo />} />
+          <Route path='/listaProdutos' element={<ListaProdutos />} />
           <Route path='/cadastrarProduto' element={<Todo />} />
           <Route path='/editarProduto/:id' element={<Todo />} />
           <Route path='/deletarProduto/:id' element={<Todo />} />

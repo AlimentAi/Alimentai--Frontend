@@ -1,41 +1,22 @@
-import React, { useState } from 'react'
-import Postagem from '../../models/Postagem'
-import { Minus, Plus } from '@phosphor-icons/react'
+import { useState } from 'react';
+import Produto from '../../models/Produto';
+import { Minus, Plus } from '@phosphor-icons/react';
 
-/*interface CardProdutoProps {
-  produto: Postagem
-}*/
-
-const produto = {
-  id: 0,
-  nome: "Lorem Ipsum",
-  descricao: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda quia maiores alias eaque rerum enim voluptate atque recusandae quo molestias, labore, architecto ex asperiores in fugiat, a doloremque possimus ipsa?",
-  preco: 12.34,
-  quantidade: 4,
-  data: "24-04-2024",
-  foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZwW3IWpDpIZjhTkrxapzBSKnJXrj3aKMvRS3ctQn0Pw&s",
-  categoria: {
-    id: 0,
-    nome: "fruta",
-    descricao: "Descrição"
-  },
-  usuario: {
-    id: 0,
-    nome: "José da Silva"
-  }
+interface CardProdutoProps {
+  produto: Produto;
 }
 
-function CardProduto() {
-  const [quantidade, setQuantidade] = useState(0)
+function CardProduto({ produto }: CardProdutoProps) {
+  const [quantidade, setQuantidade] = useState(0);
 
   function incrementItem() {
     if (quantidade < produto.quantidade)
-      setQuantidade(quantidade + 1)
+      setQuantidade(quantidade + 1);
   }
 
   function decrementItem() {
     if (quantidade > 0)
-      setQuantidade(quantidade - 1)
+      setQuantidade(quantidade - 1);
   }
 
   return (
@@ -56,7 +37,7 @@ function CardProduto() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CardProduto
+export default CardProduto;
