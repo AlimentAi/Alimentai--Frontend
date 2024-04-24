@@ -83,41 +83,41 @@ function ListaProdutos() {
           wrapperClass="dna-wrapper mx-auto"
         />
       )}
-
       <div className="flex justify-center w-full px-20 my-4">
-
-        
         <div className="container flex flex-col">
           {produtos.length !== 0 && (
-            <div className="bg-[#EBFBEA] dark:bg-[#445844] py-7 px-10 mb-10 flex items-center rounded-full">
-              <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold mr-4'>PRODUTOS</span>
-              
-              <select
-                name="categoria"
-                id="categoria"
-                value={categoriaSelecionada}
-                onChange={handleSelecionarCategoria}
-                className='border-slate-800 rounded bg-transparent ml-20'
-              >
-                <option value="">Todas as categorias</option>
-                {categorias.map((categoria) => (
-                  <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
-                ))}
-              </select>
-              
-              <input
-                type="text"
-                placeholder="Pesquisar por produto"
-                value={filtroProduto}
-                onChange={handleFiltrarProdutos}
-                className='border-slate-800 rounded bg-white dark:bg-[#394B3E] ml-auto px-3 py-1 ml-200 duration-300'
-                style={{ marginRight: '20px', width: '500px' }}
-              />
-
-              <Link to='/cadastrarProduto'>
-                <button className='m-4 p-2 border rounded-lg border-black dark:border-white'>Cadastrar novo Produto</button>
-              </Link>
-            </div>
+            <>
+              <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold self-start py-3 mx-20'>COMPRE POR</span>
+              <div className="bg-[#EBFBEA] dark:bg-[#445844] py-7 px-10 mb-10 flex items-center rounded-full">
+                <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold mr-4'>PRODUTOS</span>
+                
+                <select
+                  name="categoria"
+                  id="categoria"
+                  value={categoriaSelecionada}
+                  onChange={handleSelecionarCategoria}
+                  className='border-slate-800 rounded bg-transparent ml-20'
+                >
+                  <option value="">Todas as categorias</option>
+                  {categorias.map((categoria) => (
+                    <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
+                  ))}
+                </select>
+                
+                <input
+                  type="text"
+                  placeholder="Pesquisar por produto"
+                  value={filtroProduto}
+                  onChange={handleFiltrarProdutos}
+                  className='border-slate-800 rounded bg-white dark:bg-[#394B3E] ml-auto px-3 py-1 ml-200 duration-300'
+                  style={{ marginRight: '20px', width: '500px' }}
+                />
+  
+                <Link to='/cadastrarProduto'>
+                  <button className='m-4 p-2 border rounded-lg border-black dark:border-white'>Cadastrar novo Produto</button>
+                </Link>
+              </div>
+            </>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {produtosFiltrados.map((produto) => ( 
@@ -128,6 +128,7 @@ function ListaProdutos() {
       </div>
     </>
   );
+  
 }
 
 export default ListaProdutos;

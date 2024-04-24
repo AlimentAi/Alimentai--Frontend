@@ -13,6 +13,7 @@ import ListaCategoria from "./components/categorias/ListaCategoria"
 import ListaProdutos from "./components/produtos/ListaProdutos"
 import Sobre from "./pages/sobre/Sobre"
 import { useContext } from "react"
+import DeletarProduto from "./components/produtos/DeletarProduto"
 
 function App() {
   const {usuario} = useContext(AuthContext)
@@ -33,7 +34,7 @@ function App() {
           <Route path='/listaProdutos' element={<ListaProdutos />} />
           <Route path='/cadastrarProduto' element={<Todo />} />
           <Route path='/editarProduto/:id' element={<Todo />} />
-          <Route path='/deletarProduto/:id' element={<Todo />} />
+          <Route path='/deletarProduto/:id' element={<DeletarProduto />} />
           <Route path='/listaCategorias' element={<ListaCategoria />} />
           <Route path='/cadastrarCategoria' element={<FormularioCategoria />} />
           <Route path='/editarCategoria/:id' element={<FormularioCategoria />} />

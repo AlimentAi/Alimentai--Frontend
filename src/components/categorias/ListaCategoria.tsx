@@ -8,6 +8,7 @@ import CardCategoria from './CardCategoria';
 
 function ListaCategoria() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
   const [filtroCategoria, setFiltroCategoria] = useState<string>("");
 
   let navigate = useNavigate();
@@ -67,7 +68,8 @@ function ListaCategoria() {
 
       <div className="flex justify-center w-full px-20 my-4">
         <div className="container flex flex-col">
-          {categorias.length !== 0 && (
+          {categorias.length !== 0 && <>
+            <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold self-start py-3 mx-20'>COMPRE POR</span>
             <div className="bg-[#EBFBEA] dark:bg-[#445844] py-7 px-10 mb-10 flex items-center rounded-full">
               <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold mr-4'>CATEGORIAS</span>
               <input
@@ -81,8 +83,7 @@ function ListaCategoria() {
               <Link to='/cadastrarCategoria'>
                 <button className='m-4 p-2 border rounded-lg border-black dark:border-white'>Cadastrar nova Categoria</button>
               </Link>
-            </div>
-          )}
+            </div></>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categoriasFiltradas.map((categoria) => ( 
               <CardCategoria key={categoria.id} categoria={categoria} />

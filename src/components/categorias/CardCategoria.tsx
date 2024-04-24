@@ -7,7 +7,7 @@ interface CardCategoriaProps {
 
 function CardCategoria({ categoria }: CardCategoriaProps) {
   return (
-    <div className='border m-4 flex flex-col rounded-2xl overflow-hidden shadow-md bg-gray-50 dark:bg-neutral-900 duration-300'>
+    <div className='border m-4 flex flex-col rounded-2xl overflow-hidden shadow-md bg-white dark:bg-neutral-900 duration-300'>
       <p className='p-5 pb-5 text-3xl font-bold text-white bg-[#CC9564] dark:bg-[#584141]'>{categoria.nome}</p>
       <p className='p-5 text-2xl font-semibold h-full'>{categoria.descricao}</p>
 
