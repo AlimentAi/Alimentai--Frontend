@@ -52,7 +52,7 @@ export function NavBar() {
 
     const buttonColor = 'text-[#c44382]'
 
-    if (endpoint.includes('/login') || endpoint.includes('/cadastrar')) {
+    if (endpoint.includes('/login') || endpoint.includes('/cadastrar') || usuario.token === '') {
       navbar?.classList.add('absolute')
       navbar?.classList.remove('shadow-lg')
       navbarLogo?.classList.add('invisible')
@@ -71,6 +71,9 @@ export function NavBar() {
     logar?.classList.remove(buttonColor)
     cadastrar?.classList.remove(buttonColor)
 
+    if (usuario.token === '' && endpoint === '/')
+      logar?.classList.add(buttonColor)
+      
     switch (true) {
       case endpoint.includes('home'):
         home?.classList.add(buttonColor)
@@ -91,7 +94,7 @@ export function NavBar() {
         cadastrar?.classList.add(buttonColor)
         break
     }
-  }, [endpoint])
+  }, [endpoint, usuario.token])
 
   return (
     <header id='navbar' className="flex justify-center w-full h-20 shadow-lg">

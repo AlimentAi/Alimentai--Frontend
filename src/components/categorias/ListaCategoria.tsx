@@ -74,7 +74,7 @@ function ListaCategoria() {
         <div className="container flex flex-col">
           {categorias.length !== 0 && <>
             <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold self-start py-3 mx-20'>COMPRE POR</span>
-            <div className="bg-green-100 dark:bg-green-900 py-7 px-10 mb-20 flex items-center rounded-full">
+            <div className="bg-green-100 dark:bg-green-900 py-7 px-10 mb-10 flex items-center rounded-full">
               <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold mr-4'>CATEGORIAS</span>
               <select
                 name="categoria"
@@ -83,7 +83,7 @@ function ListaCategoria() {
                 onChange={handleSelecionarCategoria}
                 className='border-slate-800 rounded bg-transparent ml-20'
               >
-                <option value="" disabled>Selecione uma categoria</option>
+                <option value="">Selecione uma categoria</option>
                 {categorias.map((categoria) => (
                   <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
                 ))}

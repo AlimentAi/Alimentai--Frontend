@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { AuthContext } from '../../contexts/AuthContext'
 
 function Footer() {
   const link = useLocation().pathname
+  const token = useContext(AuthContext).usuario.token
 
   useEffect(() => {
     let footer = document.querySelector('#footer')
-    if (link.includes('login') || link.includes('cadastrar')) {
+    if (link.includes('login') || link.includes('cadastrar') || token === '') {
       footer?.classList.add('hidden')
     } else {
       footer?.classList.remove('hidden')

@@ -38,7 +38,7 @@ export function Login() {
     <div className="w-full h-screen flex">
       <div className="w-[50%] h-full bg-image-login bg-no-repeat bg-cover"></div>
       <div className="w-[50%] h-full flex flex-col justify-center items-start p-4">
-        <Link to='/home' className="w-28 z-50">
+        <Link to='/' className="w-28 z-50">
           <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
             <CaretLeft size={40} />
             <span className="">Voltar</span>
@@ -68,7 +68,7 @@ export function Login() {
             <button type="submit" className="w-[50%] h-14 bg-[#f76c6f] rounded-lg font-bold text-white hover:bg-[#c42342] duration-1000">
               {isLoading ? 'Carregando' : 'Entrar'}
             </button>
-            <h2>Não dispõe de conta? <Link to='/cadastro' className="font-bold text-[#f76c6f] hover:text-[#c42342] duration-1000">Registre-se</Link></h2>
+            <h2>Não dispõe de conta? <Link to='/cadastrar' className="font-bold text-[#f76c6f] hover:text-[#c42342] duration-1000">Registre-se</Link></h2>
           </div>
         </form>
       </div>
