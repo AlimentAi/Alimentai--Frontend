@@ -54,9 +54,6 @@ function Home() {
 
           <p className='text-1xl'>ALIMENTAi - Raízes Sustentáveis</p>
         </div>
-
-
-
       </div>
     </>
   )
