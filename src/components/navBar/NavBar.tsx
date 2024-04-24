@@ -73,6 +73,8 @@ export function NavBar() {
 
     if (usuario.token === '' && endpoint === '/')
       logar?.classList.add(buttonColor)
+    if (usuario.token !== '' && endpoint === '/')
+      home?.classList.add(buttonColor)
       
     switch (true) {
       case endpoint.includes('home'):
