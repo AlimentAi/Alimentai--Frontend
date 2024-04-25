@@ -94,8 +94,9 @@ export function FormularioProduto() {
     }
   }, [token]);
 
+  //TODO: Criar card de preview que atualiza os componentes conforme edição do usuário
   return (
-    <div className="w-full min-h-[84vh] container flex flex-col items-center justify-center mx-auto gap-4">
+    <div className="w-full min-h-[84vh] container flex flex-col items-center justify-center mx-auto gap-4 my-8">
       <div className="w-[90%] justify-center flex items-center">
         <h1 className="text-3xl font-bold">{id === undefined ? 'Novo Produto' : 'Editar Produto'}</h1>
         <img src={Logo} className="w-14" alt="" />

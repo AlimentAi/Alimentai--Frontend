@@ -73,7 +73,7 @@ function ListaProdutos() {
   return (
     <>
       {produtos.length === 0 && (
-        <div className="flex justify-center">
+        <div className="flex justify-center min-h-96">
           <Vortex
             height="100"
             width="100"
