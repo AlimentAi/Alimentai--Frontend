@@ -4,6 +4,8 @@ import Categoria from "../../models/Categoria";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Service";
+import { toast } from "react-toastify";
+import { toastAlerta } from "../../utils/toastAlerta";
 
 export function FormularioCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
@@ -49,15 +51,21 @@ export function FormularioCategoria() {
           }
         })
 
-        alert('Categoria atualizada com sucesso')
+        toastAlerta('Categoria atualizada com sucesso', 'sucess')
         retornar()
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          const mensagemTokenExpirou = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">O token expirou, favor logar novamente</span>
+              <img src="https://i.imgur.com/qR3xwhs.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+  toast.error(mensagemTokenExpirou);
           handleLogout()
         } else {
-          alert('Erro ao atualizar a Categoria')
+          toastAlerta('Erro ao atualizar a Categoria', 'error')
         }
       }
 
@@ -69,14 +77,20 @@ export function FormularioCategoria() {
           }
         })
 
-        alert('Categoria cadastrada com sucesso')
+        toastAlerta('Categoria cadastrada com sucesso', 'sucess')
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          const mensagemToken = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">O token expirou, favor logar novamente</span>
+              <img src="https://i.imgur.com/qR3xwhs.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+  toast.error(mensagemToken);
           handleLogout()
         } else {
-          alert('Erro ao cadastrar a Categoria')
+          toastAlerta('Erro ao cadastrar a Categoria', 'error')
         }
       }
     }
@@ -90,7 +104,13 @@ export function FormularioCategoria() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      const mensagemErro = (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <span className="font-semibold">Você precisa estar logado</span>
+          <img src="https://i.imgur.com/F1Yn7v3.png" alt="Precisa estar Logado" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+        </div>
+      );
+      toast.error(mensagemErro);
       navigate('/login');
     }
   }, [token]);

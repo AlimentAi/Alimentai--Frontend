@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 import Produto from '../../models/Produto'
 import { buscar, deletar } from '../../services/Service'
+import { toast } from 'react-toastify'
+import { toastAlerta } from '../../utils/toastAlerta'
 
 function DeletarProduto() {
     const [produto, setProduto] = useState<Produto>({} as Produto)
@@ -23,15 +25,27 @@ function DeletarProduto() {
             })
         }catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('Vish você esta um tempo inativo, faça login novamente por favor')
-                handleLogout()
+                const mensagemInativo = (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      <span className="font-semibold">Vish você esta um tempo inativo, faça login novamente por favor</span>
+                      <img src="https://i.imgur.com/qR3xwhs.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+                    </div>
+                  );
+          toast.error(mensagemInativo);
+          handleLogout()
             }
         }
     }
 
     useEffect(() => {
         if (token === '') {
-            alert('Logue primeiro antes de qualquer ação')
+        const mensagemLogue = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">Logue primeiro antes de qualquer ação</span>
+              <img src="https://i.imgur.com/9LUfmKX.png" alt="Logue Primeiro" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+  toast.error(mensagemLogue);
             navigate('/Login')
         }
     }, [token])
@@ -54,11 +68,11 @@ async function deletarProduto() {
             }
         })
 
-        alert('O produto foi deletado com sucesso')
+        toastAlerta('O produto foi deletado com sucesso', 'sucess')
         retornar()
 
     }catch (error) {
-        alert('Erro ao tentar deletar o produto')
+        toastAlerta('Erro ao tentar deletar o produto', 'error')
     }
 
     retornar

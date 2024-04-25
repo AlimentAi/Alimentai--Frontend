@@ -16,6 +16,8 @@ import { useContext } from "react"
 import DeletarProduto from "./components/produtos/DeletarProduto"
 import { FormularioProduto } from "./components/produtos/FormularioProduto"
 import { AreaVendedor } from "./pages/areaVendedor/AreaVendedor"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const {usuario} = useContext(AuthContext)
@@ -23,6 +25,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <ToastContainer />
         <NavBar />
         <Routes>
           <Route path='/' element={

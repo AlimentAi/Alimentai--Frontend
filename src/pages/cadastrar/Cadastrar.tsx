@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from 'react';
 import Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
+import { toast } from "react-toastify";
 
 export function Cadastrar() {
   let navigate = useNavigate()
@@ -154,24 +155,54 @@ export function Cadastrar() {
     if (confirmarSenha === usuario.senha && senhaValida && checkTermos) {
       try {
         await cadastrarUsuario(usuario, setUsuarioResposta)
-        alert('Usuário cadastrado com sucesso')
+        const mensagemSucesso = (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span className="font-semibold">Usuário cadastrado com sucesso</span>
+            <img src="https://i.imgur.com/9LUfmKX.png" alt="Usuário Cadastrado com Sucesso" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+          </div>
+        );
+        toast.success(mensagemSucesso);
       } catch (error) {
-        alert('Erro ao cadastrar o Usuário')
+        const mensagemErro = (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span className="font-semibold">Erro ao cadastrar o Usuário</span>
+            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Erro ao Cadastrar Usuário" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+          </div>
+        );
+        toast.error(mensagemErro);
         console.log(error)
       }
     }
     
     switch (false) {
       case confirmarSenha === usuario.senha:
-        alert('Dados inconsistentes. Verifique as informações de cadastro.')
+        const mensagemSenhaInconsistente = (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span className="font-semibold">Dados inconsistentes. Verifique as informações de cadastro.</span>
+            <img src="https://i.imgur.com/aAwsVDm.png" alt="Dados Inconsistentes" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+          </div>
+        );
+        toast.info(mensagemSenhaInconsistente);
         setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
         setConfirmarSenha("")                 // Reinicia o campo de Confirmar Senha
         break
       case senhaValida:
-        alert('A senha não atende aos requisitos mínimos.')
+        const mensagemSenhaFraca = (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span className="font-semibold">A senha não atende aos requisitos mínimos.</span>
+            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Senha Fraca" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+          </div>
+        );
+        toast.info(mensagemSenhaFraca);
         break
       case checkTermos:
-        alert('Você precisa aceitar os temos de uso.')
+        const mensagemTermosNaoAceitos = (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span className="font-semibold">Você precisa aceitar os termos de uso.</span>
+            <img src="https://i.imgur.com/mnS6hn9.png" alt="Termos de Uso Não Aceitos" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+          </div>
+        );
+        toast.info(mensagemTermosNaoAceitos);
         break
     }
   }

@@ -5,6 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Service";
 import Produto from "../../models/Produto";
+import { toast } from "react-toastify";
+import { toastAlerta } from "../../utils/toastAlerta";
 
 export function FormularioProduto() {
   const [produto, setProduto] = useState<Produto>({} as Produto);
@@ -31,10 +33,22 @@ export function FormularioProduto() {
       });
     } catch (error: any) {
       if (error.toString().includes('403')) {
-        alert('O token expirou, favor logar novamente');
+        const mensagemTokenExpirou = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">O token expirou, favor logar novamente</span>
+              <img src="https://i.imgur.com/qR3xwhs.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+  toast.error(mensagemTokenExpirou);
         handleLogout();
       } else {
-        alert('Erro ao buscar as categorias');
+        const mensagemErroCategoria = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">Erro ao buscar as Categorias</span>
+              <img src="https://i.imgur.com/aAwsVDm.png" alt="Erro ao buscar Categorias" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+  toast.error(mensagemErroCategoria);
       }
     }
   }
@@ -63,22 +77,34 @@ export function FormularioProduto() {
             Authorization: token
           }
         });
-        alert('Produto atualizado com sucesso');
+        toastAlerta('Produto atualizado com sucesso', 'sucess');
       } else {
         await cadastrar(`/produtos`, produto, setProduto, {
           headers: {
             Authorization: token
           }
         });
-        alert('Produto cadastrado com sucesso');
+        toastAlerta('Produto cadastrado com sucesso', 'sucess');
       }
       retornar();
     } catch (error: any) {
       if (error.toString().includes('403')) {
-        alert('O token expirou, favor logar novamente');
+        const mensagemToken = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">O token expirou, favor logar novamente</span>
+              <img src="https://i.imgur.com/qR3xwhs.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+  toast.error(mensagemToken);
         handleLogout();
       } else {
-        alert('Erro ao cadastrar/atualizar o produto');
+        const mensagemErro = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">Erro ao cadastrar/atualizar o produto</span>
+              <img src="https://i.imgur.com/F1Yn7v3.png" alt="Erro ao Cadastrar Usuário" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+          toast.error(mensagemErro);
       }
     }
   }
@@ -89,7 +115,13 @@ export function FormularioProduto() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+        const mensagemErro = (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="font-semibold">Você precisa estar logado</span>
+              <img src="https://i.imgur.com/F1Yn7v3.png" alt="Precisa estar Logado" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            </div>
+          );
+          toast.error(mensagemErro);
       navigate('/login');
     }
   }, [token]);
