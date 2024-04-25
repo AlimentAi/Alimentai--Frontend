@@ -8,7 +8,6 @@ import CardCategoria from './CardCategoria';
 
 function ListaCategoria() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
   const [filtroCategoria, setFiltroCategoria] = useState<string>("");
 
   let navigate = useNavigate();
