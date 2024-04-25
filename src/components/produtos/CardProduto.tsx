@@ -30,13 +30,17 @@ function CardProduto({ produto }: CardProdutoProps) {
       style: 'currency',
       currency: 'BRL'
     }).format(produto.preco)}</p>
-    <div className='flex justify-between items-center text-2xl px-2 border'>
+  </div>
+  <div className='p-4 border border-gray-300 rounded-lg mx-3 mb-3'>
+    <div className='flex justify-between items-center text-2xl px-2'>
       <Minus size={24} className='' onClick={decrementItem} />
       <p>{quantidade}</p>
       <Plus size={24} className='' onClick={incrementItem} />
     </div>
   </div>
 </div>
+
+
 
   );
 }

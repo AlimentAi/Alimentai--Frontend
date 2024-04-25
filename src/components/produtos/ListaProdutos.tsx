@@ -83,20 +83,19 @@ function ListaProdutos() {
           wrapperClass="dna-wrapper mx-auto"
         />
       )}
-      <div className="flex justify-center w-full px-20 my-4">
+      <div className="flex justify-center w-full px-20 my-10">
         <div className="container flex flex-col">
           {produtos.length !== 0 && (
             <>
-              <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold self-start py-3 mx-20'>COMPRE POR</span>
-              <div className="bg-[#EBFBEA] dark:bg-[#445844] py-7 px-10 mb-10 flex items-center rounded-full">
-                <span style={{ fontFamily: 'Roboto', fontWeight: 'normal' }} className='font-semibold mr-4'>PRODUTOS</span>
+            <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
+            <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>PRODUTOS</span>
                 
                 <select
                   name="categoria"
                   id="categoria"
                   value={categoriaSelecionada}
                   onChange={handleSelecionarCategoria}
-                  className='border-slate-800 rounded bg-transparent ml-20'
+                  className='border-slate-800 rounded bg-transparent ml-20 '
                 >
                   <option value="">Todas as categorias</option>
                   {categorias.map((categoria) => (
@@ -109,12 +108,12 @@ function ListaProdutos() {
                   placeholder="Pesquisar por produto"
                   value={filtroProduto}
                   onChange={handleFiltrarProdutos}
-                  className='border-slate-800 rounded bg-white dark:bg-[#394B3E] ml-auto px-3 py-1 ml-200 duration-300'
-                  style={{ marginRight: '20px', width: '500px' }}
+                  className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
+                  style={{ marginRight: '20px', width: '400px' }}
                 />
   
                 <Link to='/cadastrarProduto'>
-                  <button className='m-4 p-2 border rounded-lg border-black dark:border-white'>Cadastrar novo Produto</button>
+                <button className='m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold text-blacke bg-white dark:bg-[#212b24]'>Cadastrar novo Produto</button>
                 </Link>
               </div>
             </>
