@@ -10,8 +10,11 @@ import { Cadastrar } from "./pages/cadastrar/Cadastrar"
 import DeletarCategoria from "./components/categorias/DeletarCategoria"
 import { FormularioCategoria } from "./components/categorias/FormularioCategoria"
 import ListaCategoria from "./components/categorias/ListaCategoria"
+import ListaProdutos from "./components/produtos/ListaProdutos"
 import Sobre from "./pages/sobre/Sobre"
 import { useContext } from "react"
+import DeletarProduto from "./components/produtos/DeletarProduto"
+import { FormularioProduto } from "./components/produtos/FormularioProduto"
 
 function App() {
   const {usuario} = useContext(AuthContext)
@@ -29,10 +32,10 @@ function App() {
           <Route path='/cadastrar' element={<Cadastrar />} />
           <Route path='/sobre' element={<Sobre />} />
           <Route path='/contato' element={<Todo />} />
-          <Route path='/listaProdutos' element={<Todo />} />
-          <Route path='/cadastrarProduto' element={<Todo />} />
-          <Route path='/editarProduto/:id' element={<Todo />} />
-          <Route path='/deletarProduto/:id' element={<Todo />} />
+          <Route path='/listaProdutos' element={<ListaProdutos />} />
+          <Route path='/cadastrarProduto' element={<FormularioProduto />} />
+          <Route path='/editarProduto/:id' element={<FormularioProduto />} />
+          <Route path='/deletarProduto/:id' element={<DeletarProduto />} />
           <Route path='/listaCategorias' element={<ListaCategoria />} />
           <Route path='/cadastrarCategoria' element={<FormularioCategoria />} />
           <Route path='/editarCategoria/:id' element={<FormularioCategoria />} />
