@@ -46,22 +46,23 @@ function ListaCategoria() {
   const categoriasFiltradas = categorias.filter(categoria =>
     categoria.nome.toLowerCase().includes(filtroCategoria.toLowerCase())
   );
-  
+
   return (
     <>
       {categorias.length === 0 && (
         <>
           <div className="flex justify-center w-full my-4">
-          <div className="flex justify-center">
-       <Vortex
-         height="100"
-         width="100"
-         ariaLabel="vortex-loading"
-         wrapperStyle={{}}
-         wrapperClass="vortex-wrapper"
-         visible={true}
-       colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
-       /></div>
+            <div className="flex justify-center">
+              <Vortex
+                height="100"
+                width="100"
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                visible={true}
+                colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
+              />
+            </div>
           </div>
           <p>Parece que nenhuma categoria foi criada ainda.</p>
         </>
@@ -69,24 +70,31 @@ function ListaCategoria() {
 
       <div className="flex justify-center w-full px-20 my-10">
         <div className="container flex flex-col">
-          {categorias.length !== 0 && <>
-            <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
-              <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>CATEGORIAS</span>
-              <input
-                type="text"
-                placeholder="Pesquisar por categoria"
-                value={filtroCategoria}
-                onChange={handleFiltrarCategorias}
-                className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
-                style={{ marginRight: '40px', width: '500px' }}
-              />
-              <Link to='/cadastrarCategoria'>
-<button className='m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold text-blacke bg-white dark:bg-[#212b24]'>Cadastrar nova Categoria</button>
-              </Link>
-            </div>
-            </>}
+          {categorias.length !== 0 && (
+            <>
+              <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
+                <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>CATEGORIAS</span>
+                <input
+                  type="text"
+                  placeholder="Pesquisar por categoria"
+                  value={filtroCategoria}
+                  onChange={handleFiltrarCategorias}
+                  className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
+                  style={{ marginRight: '40px', width: '500px' }}
+                />
+                <Link to='/cadastrarCategoria'>
+                  <button
+                    className={`m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+                    style={{ fontSize: '15px' }}
+                  >
+                    Cadastrar nova Categoria
+                  </button>
+                </Link>
+              </div>
+            </>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categoriasFiltradas.map((categoria) => ( 
+            {categoriasFiltradas.map((categoria) => (
               <CardCategoria key={categoria.id} categoria={categoria} />
             ))}
           </div>

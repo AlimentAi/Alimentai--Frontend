@@ -12,7 +12,6 @@ function ListaProdutos() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtroProduto, setFiltroProduto] = useState<string>("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
-
   let navigate = useNavigate();
 
   const { usuario, handleLogout } = useContext(AuthContext);
@@ -74,24 +73,24 @@ function ListaProdutos() {
   return (
     <>
       {produtos.length === 0 && (
-       <div className="flex justify-center">
-       <Vortex
-         height="100"
-         width="100"
-         ariaLabel="vortex-loading"
-         wrapperStyle={{}}
-         wrapperClass="vortex-wrapper"
-         visible={true}
-       colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
-       /></div>
+        <div className="flex justify-center">
+          <Vortex
+            height="100"
+            width="100"
+            ariaLabel="vortex-loading"
+            wrapperStyle={{}}
+            wrapperClass="vortex-wrapper"
+            visible={true}
+            colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
+          />
+        </div>
       )}
       <div className="flex justify-center w-full px-20 my-10">
         <div className="container flex flex-col">
           {produtos.length !== 0 && (
             <>
-            <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
-            <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>PRODUTOS</span>
-                
+              <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
+                <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>PRODUTOS</span>
                 <select
                   name="categoria"
                   id="categoria"
@@ -104,7 +103,6 @@ function ListaProdutos() {
                     <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
                   ))}
                 </select>
-                
                 <input
                   type="text"
                   placeholder="Pesquisar por produto"
@@ -113,9 +111,13 @@ function ListaProdutos() {
                   className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
                   style={{ marginRight: '20px', width: '400px' }}
                 />
-  
                 <Link to='/cadastrarProduto'>
-                <button className='m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold text-blacke bg-white dark:bg-[#212b24]'>Cadastrar novo Produto</button>
+                  <button 
+                    className={`m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+                    style={{ fontSize: '15px' }}
+                  >
+                    Cadastrar novo Produto
+                  </button>
                 </Link>
               </div>
             </>
@@ -128,8 +130,7 @@ function ListaProdutos() {
         </div>
       </div>
     </>
-  );
-  
+  ); 
 }
 
 export default ListaProdutos;
