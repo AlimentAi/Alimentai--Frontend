@@ -15,6 +15,7 @@ import Sobre from "./pages/sobre/Sobre"
 import { useContext } from "react"
 import DeletarProduto from "./components/produtos/DeletarProduto"
 import { FormularioProduto } from "./components/produtos/FormularioProduto"
+import { AreaVendedor } from "./pages/areaVendedor/AreaVendedor"
 
 function App() {
   const {usuario} = useContext(AuthContext)
@@ -40,6 +41,7 @@ function App() {
           <Route path='/cadastrarCategoria' element={<FormularioCategoria />} />
           <Route path='/editarCategoria/:id' element={<FormularioCategoria />} />
           <Route path='/deletarCategoria/:id' element={<DeletarCategoria />} />
+          <Route path='/areaVendedor' element={<AreaVendedor />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
         <Footer />

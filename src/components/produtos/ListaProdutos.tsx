@@ -12,7 +12,7 @@ function ListaProdutos() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtroProduto, setFiltroProduto] = useState<string>("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
@@ -111,7 +111,7 @@ function ListaProdutos() {
                   style={{ marginRight: '20px', width: '400px' }}
                 />
                 <Link to='/cadastrarProduto'>
-                  <button 
+                  <button
                     className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
                     style={{ fontSize: '15px' }}
                   >
@@ -122,14 +122,14 @@ function ListaProdutos() {
             </>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {produtosFiltrados.map((produto) => ( 
+            {produtosFiltrados.map((produto) => (
               <CardProduto key={produto.id} produto={produto} />
             ))}
           </div>
         </div>
       </div>
     </>
-  ); 
+  );
 }
 
 export default ListaProdutos;
