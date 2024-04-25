@@ -122,7 +122,7 @@ export function NavBar() {
             <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>}
           {usuario.token !== '' &&
             <li><Link id='produtos' to='/listaProdutos' className='hover:text-[#c42342] duration-500 p-4'>Produtos</Link></li>}
-          {usuario.token !== '' &&
+          {usuario.type === 'produtor' || usuario.type === 'administrador' &&
             <li><Link id='categorias' to='/listaCategorias' className='hover:text-[#c42342] duration-500 p-4'>Categorias</Link></li>}
           {usuario.token !== '' &&
             <li><Link id='sobre' to='/sobre' className='hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>}

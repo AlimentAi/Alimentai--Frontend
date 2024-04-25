@@ -4,5 +4,6 @@ export default interface UsuarioLogin {
     email: string;
     foto: string;
     senha: string;
+    type: 'administrador' | 'produtor' | 'consumidor';
     token: string;
 }
