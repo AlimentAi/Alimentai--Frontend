@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext, useState } from 'react';
 import Produto from '../../models/Produto';
-import { Minus, Plus, Heart, ShoppingCart, PencilSimpleLine } from '@phosphor-icons/react';
+import { Minus, Plus, Heart, ShoppingCart, PencilSimpleLine, ImageBroken } from '@phosphor-icons/react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -77,8 +77,11 @@ function CardProduto({ produto }: CardProdutoProps) {
           size={40}
           className={'absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-black dark:text-white duration-300'}
           onClick={toggleFavorito}/>
-        }
-      <img src={produto.foto} className='w-full' alt={produto.nome} />
+      }
+      {produto.foto === null || produto.foto === undefined || produto.foto === '' ?
+        <ImageBroken size={64} className='mx-auto w-full h-auto max-h-56 bg-[#88888844]' /> :
+        <img src={produto.foto} className='w-full' alt={produto.nome} />
+      }
       <div className='p-4 flex flex-col justify-center items-center'>
         <p className='text-start text-2xl font-bold mb-4'>{produto.nome}</p>
         <p className='w-full flex items-center justify-center py-2 rounded-lg duration-300'>{produto.descricao}</p>

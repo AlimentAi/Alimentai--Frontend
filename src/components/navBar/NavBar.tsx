@@ -53,7 +53,7 @@ export function NavBar() {
 
     const buttonColor = 'text-[#c44382]'
 
-    if (endpoint.includes('/login') || endpoint.includes('/cadastrar') || usuario.token === '') {
+    if (endpoint.includes('/login') || endpoint.includes('/cadastrar') || (usuario.token === '' && endpoint === '/')) {
       navbar?.classList.add('absolute')
       navbar?.classList.remove('shadow-lg')
       navbarLogo?.classList.add('invisible')
