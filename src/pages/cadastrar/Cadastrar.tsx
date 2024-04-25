@@ -3,6 +3,7 @@ import Logo from "../../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from 'react';
 import Usuario from "../../models/Usuario";
+import { cadastrarUsuario } from "../../services/Service";
 
 export function Cadastrar() {
   let navigate = useNavigate()
@@ -152,7 +153,7 @@ export function Cadastrar() {
 
     if (confirmarSenha === usuario.senha && senhaValida && checkTermos) {
       try {
-        //await cadastrarUsuario(usuario, setUsuarioResposta)
+        await cadastrarUsuario(usuario, setUsuarioResposta)
         alert('Usuário cadastrado com sucesso')
       } catch (error) {
         alert('Erro ao cadastrar o Usuário')
