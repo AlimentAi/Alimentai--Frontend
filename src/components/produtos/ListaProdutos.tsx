@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { DNA } from 'react-loader-spinner';
+import { Vortex } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import Produto from '../../models/Produto';
@@ -74,14 +74,16 @@ function ListaProdutos() {
   return (
     <>
       {produtos.length === 0 && (
-        <DNA
-          visible={true}
-          height="200"
-          width="200"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper mx-auto"
-        />
+       <div className="flex justify-center">
+       <Vortex
+         height="100"
+         width="100"
+         ariaLabel="vortex-loading"
+         wrapperStyle={{}}
+         wrapperClass="vortex-wrapper"
+         visible={true}
+       colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
+       /></div>
       )}
       <div className="flex justify-center w-full px-20 my-10">
         <div className="container flex flex-col">

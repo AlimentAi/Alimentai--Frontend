@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { DNA } from 'react-loader-spinner';
+import { Vortex } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import Categoria from '../../models/Categoria';
@@ -52,14 +52,16 @@ function ListaCategoria() {
       {categorias.length === 0 && (
         <>
           <div className="flex justify-center w-full my-4">
-            <DNA
-              visible={true}
-              height="200"
-              width="200"
-              ariaLabel="dna-loading"
-              wrapperStyle={{}}
-              wrapperClass="dna-wrapper mx-auto"
-            />
+          <div className="flex justify-center">
+       <Vortex
+         height="100"
+         width="100"
+         ariaLabel="vortex-loading"
+         wrapperStyle={{}}
+         wrapperClass="vortex-wrapper"
+         visible={true}
+       colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
+       /></div>
           </div>
           <p>Parece que nenhuma categoria foi criada ainda.</p>
         </>
