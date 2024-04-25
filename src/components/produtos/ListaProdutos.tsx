@@ -86,7 +86,7 @@ function ListaProdutos() {
         </div>
       )}
       <div className="flex justify-center w-full px-20 my-10">
-        <div className="container flex flex-col">
+        <div className="container flex flex-col flex-container items-center">
           {produtos.length !== 0 && (
             <>
               <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
@@ -96,8 +96,7 @@ function ListaProdutos() {
                   id="categoria"
                   value={categoriaSelecionada}
                   onChange={handleSelecionarCategoria}
-                  className='border-slate-800 rounded bg-transparent ml-20 '
-                >
+                  className='border-slate-800 rounded bg-transparent ml-4 mr-8'                >
                   <option value="">Todas as categorias</option>
                   {categorias.map((categoria) => (
                     <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
@@ -113,7 +112,7 @@ function ListaProdutos() {
                 />
                 <Link to='/cadastrarProduto'>
                   <button 
-                    className={`m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+                    className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
                     style={{ fontSize: '15px' }}
                   >
                     Cadastrar novo Produto

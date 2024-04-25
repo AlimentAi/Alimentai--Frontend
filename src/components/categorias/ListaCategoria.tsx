@@ -80,11 +80,11 @@ function ListaCategoria() {
                   value={filtroCategoria}
                   onChange={handleFiltrarCategorias}
                   className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
-                  style={{ marginRight: '40px', width: '500px' }}
+                  style={{ marginRight: '40px', width: '400px' }}
                 />
                 <Link to='/cadastrarCategoria'>
                   <button
-                    className={`m-4 p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+                    className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
                     style={{ fontSize: '15px' }}
                   >
                     Cadastrar nova Categoria
