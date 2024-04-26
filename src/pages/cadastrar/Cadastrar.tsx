@@ -195,6 +195,10 @@ export function Cadastrar() {
         );
         toast.info(mensagemSenhaFraca);
         break
+      case usuario.type === 'consumidor' || usuario.type === 'produtor':
+        alert(usuario.type)
+        toast.info('Informe se você é um consumidor ou produtor')
+        break
       case checkTermos:
         const mensagemTermosNaoAceitos = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -203,9 +207,6 @@ export function Cadastrar() {
           </div>
         );
         toast.info(mensagemTermosNaoAceitos);
-        break
-      case usuario.type !== 'consumidor' && usuario.type !== 'vendedor':
-        alert('Informe se você é um consumidor ou produtor')
         break
     }
   }
