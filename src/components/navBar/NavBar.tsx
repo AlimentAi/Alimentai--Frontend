@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import { Sun, Moon, Desktop, User, Storefront } from "@phosphor-icons/react";
+import { Sun, Moon, Desktop, User, Storefront, ShoppingCartSimple } from "@phosphor-icons/react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FavoriteContext } from "../../contexts/FavoriteContext";
 
@@ -139,12 +139,16 @@ export function NavBar() {
                 </Link>
               </li>
             )}
+            {usuario.token !== '' &&
+            <li >
+              <Link id='carrinho' to='/carrinho' className='hover:text-[#c42342] duration-500 p-4 flex gap-2 items-center'>
+                <ShoppingCartSimple className="w-8 h-8 flex text-[#629d60] bg-[#e4f6e3] rounded-full p-2" size={24}/>
+                <span className="text-start text-sm font-medium">Meu <br />Carrinho</span>
+              </Link>
+            </li>}
             {usuario.token !== "" && <li><Link id="home" to="/home" className="hover:text-[#c42342] duration-500 p-4">Home</Link></li>}
             {usuario.token !== "" && <li><Link id="produtos" to="/listaProdutos" className="hover:text-[#c42342] duration-500 p-4">Produtos</Link></li>}
             {usuario.token !== "" && (usuario.type === "consumidor" || usuario.type === undefined) && (
-              <li><Link id="carrinho" to="/carrinho" className="hover:text-[#c42342] duration-500 p-4">Carrinho</Link></li>
-            )}
-             {usuario.token !== "" && (usuario.type === "consumidor" || usuario.type === undefined) && (
               <li><Link id="favoritos" to="/favoritos" className="hover:text-[#c42342] duration-500 p-4">Favoritos</Link></li>
             )}
             {usuario.token !== "" && (usuario.type === "produtor" || usuario.type === "administrador") && (

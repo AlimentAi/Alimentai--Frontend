@@ -17,6 +17,7 @@ import { useContext } from "react"
 import DeletarProduto from "./components/produtos/DeletarProduto"
 import { FormularioProduto } from "./components/produtos/FormularioProduto"
 import { AreaVendedor } from "./pages/areaVendedor/AreaVendedor"
+import { Carrinho } from "./pages/carrinho/Carrinho"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -47,6 +48,7 @@ function App() {
           <Route path='/editarCategoria/:id' element={<FormularioCategoria />} />
           <Route path='/deletarCategoria/:id' element={<DeletarCategoria />} />
           <Route path='/areaVendedor' element={<AreaVendedor />} />
+          <Route path='/carrinho' element={<Carrinho />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
         <Footer />

@@ -14,7 +14,8 @@ function CardProduto({ produto }: CardProdutoProps) {
   const [favorito, setFavorito] = useState(false);
   const { usuario } = useContext(AuthContext);
   const userId = usuario.id;
-  let navigate = useNavigate();
+
+  const navigate = useNavigate();
   let location = useLocation();
   
   const { addFavorite, removeFavorite, favorites } = useFavorite();
@@ -37,8 +38,8 @@ function CardProduto({ produto }: CardProdutoProps) {
       setQuantidade(0);
   }
   
-  function atualizarQuantidade(e: React.ChangeEvent<HTMLInputElement>) {
-    let value = Number(e.target.value)
+  function atualizarQuantidade(e: ChangeEvent<HTMLInputElement>) {
+    const value = Number(e.target.value)
     
     if (value > 0) {
       e.target.value = value.toString();
