@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Heart, ShoppingCart, PencilSimpleLine, ImageBroken, Minus, Plus } from '@phosphor-icons/react';
+import { Heart, ShoppingCart, PencilSimpleLine, ImageBroken, Minus, Plus, Trash } from '@phosphor-icons/react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useFavorite } from '../../contexts/FavoriteContext';
 import Produto from '../../models/Produto';
 
@@ -15,6 +15,7 @@ function CardProduto({ produto }: CardProdutoProps) {
   const { usuario } = useContext(AuthContext);
   const userId = usuario.id;
   let navigate = useNavigate();
+  let location = useLocation();
   
   const { addFavorite, removeFavorite, favorites } = useFavorite();
 
@@ -76,7 +77,14 @@ function CardProduto({ produto }: CardProdutoProps) {
   
   return (
     <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-64'>
-         {favorito ?
+         {location.pathname === '/favoritos' ?
+        <Trash
+          size={40}
+          weight='fill'
+          className={'absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-red-500 duration-300'}
+          onClick={toggleFavorito}
+        /> :
+        favorito ?
         <Heart
           size={40}
           weight='fill'
