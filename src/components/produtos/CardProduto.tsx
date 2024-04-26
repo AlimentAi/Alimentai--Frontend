@@ -1,8 +1,9 @@
-import { ChangeEvent, useContext, useState } from 'react';
-import Produto from '../../models/Produto';
-import { Minus, Plus, Heart, ShoppingCart, PencilSimpleLine } from '@phosphor-icons/react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Heart, ShoppingCart, PencilSimpleLine, ImageBroken, Minus, Plus, Trash } from '@phosphor-icons/react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useFavorite } from '../../contexts/FavoriteContext';
+import Produto from '../../models/Produto';
 
 interface CardProdutoProps {
   produto: Produto;
@@ -11,11 +12,17 @@ interface CardProdutoProps {
 function CardProduto({ produto }: CardProdutoProps) {
   const [quantidade, setQuantidade] = useState(0);
   const [favorito, setFavorito] = useState(false);
-
-  const {usuario} = useContext(AuthContext);
+  const { usuario } = useContext(AuthContext);
   const userId = usuario.id;
 
   const navigate = useNavigate();
+  let location = useLocation();
+  
+  const { addFavorite, removeFavorite, favorites } = useFavorite();
+
+  useEffect(() => {
+    setFavorito(favorites.some((favProduto) => favProduto.id === produto.id));
+  }, [favorites, produto]);
 
   function incrementItem() {
     if (quantidade < produto.quantidade)
@@ -53,6 +60,11 @@ function CardProduto({ produto }: CardProdutoProps) {
   }
   
   function toggleFavorito() {
+    if (!favorito) {
+      addFavorite(produto);
+    } else {
+      removeFavorite(produto.id);
+    }
     setFavorito(!favorito);
   }
 
@@ -66,7 +78,14 @@ function CardProduto({ produto }: CardProdutoProps) {
   
   return (
     <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-64'>
-      {favorito ?
+         {location.pathname === '/favoritos' ?
+        <Trash
+          size={40}
+          weight='fill'
+          className={'absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-red-500 duration-300'}
+          onClick={toggleFavorito}
+        /> :
+        favorito ?
         <Heart
           size={40}
           weight='fill'
@@ -77,8 +96,11 @@ function CardProduto({ produto }: CardProdutoProps) {
           size={40}
           className={'absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-black dark:text-white duration-300'}
           onClick={toggleFavorito}/>
-        }
-      <img src={produto.foto} className='w-full' alt={produto.nome} />
+      }
+      {produto.foto === null || produto.foto === undefined || produto.foto === '' ?
+        <ImageBroken size={64} className='mx-auto w-full h-auto max-h-56 bg-[#88888844]' /> :
+        <img src={produto.foto} className='w-full' alt={produto.nome} />
+      }
       <div className='p-4 flex flex-col justify-center items-center'>
         <p className='text-start text-2xl font-bold mb-4'>{produto.nome}</p>
         <p className='w-full flex items-center justify-center py-2 rounded-lg duration-300'>{produto.descricao}</p>
@@ -90,13 +112,13 @@ function CardProduto({ produto }: CardProdutoProps) {
       </div>
       <div className='p-2 border border-gray-300 rounded-lg mx-3 mb-3'>
         <div className='flex justify-between items-center text-2xl'>
-          <button><Minus weight='bold' size={32} className='hover:text-[#c42342] dark:hover:text-[#95507E] duration-300 p-2' onClick={decrementItem} /></button>
+          <button><Minus weight='bold' size={32} className='hover:text-[#c42342] duration-300 p-2' onClick={decrementItem} /></button>
           <input
             type='number'
             className='w-full bg-transparent text-center outline-none [&::-webkit-inner-spin-button]:appearance-none'
             value={quantidade}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarQuantidade(e)}/>
-          <button><Plus weight='bold' size={32} className='hover:text-[#c42342] dark:hover:text-[#95507E] duration-300 p-2' onClick={incrementItem} /></button>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => atualizarQuantidade(e)}/>
+          <button><Plus weight='bold' size={32} className='hover:text-[#c42342] duration-300 p-2' onClick={incrementItem} /></button>
         </div>
       </div>
       <div className="flex mx-3 mb-3">
