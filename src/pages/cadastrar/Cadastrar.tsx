@@ -18,7 +18,7 @@ export function Cadastrar() {
     email: '',
     senha: '',
     foto: '',
-    type: 'consumidor'
+    type: ''
   })
 
   const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
@@ -27,7 +27,7 @@ export function Cadastrar() {
     email: '',
     senha: '',
     foto: '',
-    type: 'consumidor'
+    type: ''
   })
 
   useEffect(() => {
@@ -151,7 +151,7 @@ export function Cadastrar() {
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (confirmarSenha === usuario.senha && senhaValida && checkTermos) {
+    if (confirmarSenha === usuario.senha && senhaValida && checkTermos && usuario.type !== '') {
       try {
         await cadastrarUsuario(usuario, setUsuarioResposta)
         alert('Usuário cadastrado com sucesso')
@@ -172,6 +172,9 @@ export function Cadastrar() {
         break
       case checkTermos:
         alert('Você precisa aceitar os temos de uso.')
+        break
+      case usuario.type !== 'consumidor' && usuario.type !== 'vendedor':
+        alert('Informe se você é um consumidor ou produtor')
         break
     }
   }
@@ -255,7 +258,7 @@ export function Cadastrar() {
                     Sou consumidor
                   </label>
                 </div>
-                <div className={`${usuario.type === 'produtor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>
+                <div className={`${usuario.type === 'produtor' ? 'text-orange-600 dark:text-orange-400' : ''} duration-300`}>
                   <input
                     id="produtor"
                     type="radio"
