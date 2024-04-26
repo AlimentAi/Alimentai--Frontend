@@ -132,34 +132,33 @@ export function NavBar() {
               {(theme !== "dark" && theme !== "light") && <Desktop size={24} />}
             </button>
 
+            {usuario.token !== '' &&
+              <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>
+            }
+            {usuario.token !== '' && usuario.tipo === 'consumidor' &&
+              <li><Link id='produtos' to='/listaProdutos' className='hover:text-[#c42342] duration-500 p-4'>Produtos</Link></li>
+            }
             {usuario.token !== '' && (usuario.tipo === 'produtor' || usuario.tipo === 'administrador') &&
-              <li><Link id='areaVendedor' to='/areaVendedor' className='hover:text-[#c42342] duration-500 p-4 flex gap-1'> <Storefront size={24} /> Área do Vendedor</Link></li>}
+              <li><Link id='categorias' to='/listaCategorias' className='hover:text-[#c42342] duration-500 p-4'>Categorias</Link></li>
+            }
             {usuario.token !== '' &&
-              <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>}
-            {usuario.token !== '' &&
-              <li><Link id='produtos' to='/listaProdutos' className='hover:text-[#c42342] duration-500 p-4'>Produtos</Link></li>}
+              <li><Link id='sobre' to='/sobre' className='hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>
+            }
+            {usuario.token !== "" && (usuario.tipo === "consumidor" || usuario.tipo === undefined) && (
+              <li><Link id="favoritos" to="/favoritos" className="hover:text-[#c42342] duration-500 p-4">Favoritos</Link></li>
+            )}
+            {usuario.token !== '' && (usuario.tipo === 'produtor' || usuario.tipo === 'administrador') &&
+              <li><Link id='areaVendedor' to='/areaVendedor' className='hover:text-[#c42342] duration-500 p-4 flex gap-1'>
+                <Storefront size={24} /> Área do Vendedor</Link>
+              </li>
+            }
             {usuario.token !== '' && (usuario.tipo === 'consumidor' || usuario.tipo === undefined) &&
-              <li><Link id='carrinho' to='/carrinho' className="hover:text-[#c42342] duration-500 p-4">Carrinho</Link></li>}
-            {usuario.token !== '' && (usuario.tipo === 'produtor' || usuario.tipo === 'administrador') &&
-              <li><Link id='categorias' to='/listaCategorias' className='hover:text-[#c42342] duration-500 p-4'>Categorias</Link></li>}
-            {usuario.token !== '' &&
-              <li><Link id='sobre' to='/sobre' className='hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>}
-            {usuario.token !== '' &&
             <li >
               <Link id='carrinho' to='/carrinho' className='hover:text-[#c42342] duration-500 p-4 flex gap-2 items-center'>
                 <ShoppingCartSimple className="w-8 h-8 flex text-[#629d60] bg-[#e4f6e3] rounded-full p-2" size={24}/>
-                <span className="text-start text-sm font-medium">Meu <br />Carrinho</span>
+                <span className="text-start text-sm font-medium">Meu Carrinho</span>
               </Link>
             </li>}
-            {usuario.token !== "" && <li><Link id="home" to="/home" className="hover:text-[#c42342] duration-500 p-4">Home</Link></li>}
-            {usuario.token !== "" && <li><Link id="produtos" to="/listaProdutos" className="hover:text-[#c42342] duration-500 p-4">Produtos</Link></li>}
-            {usuario.token !== "" && (usuario.type === "consumidor" || usuario.type === undefined) && (
-              <li><Link id="favoritos" to="/favoritos" className="hover:text-[#c42342] duration-500 p-4">Favoritos</Link></li>
-            )}
-            {usuario.token !== "" && (usuario.type === "produtor" || usuario.type === "administrador") && (
-              <li><Link id="categorias" to="/listaCategorias" className="hover:text-[#c42342] duration-500 p-4">Categorias</Link></li>
-            )}
-            {usuario.token !== "" && <li><Link id="sobre" to="/sobre" className="hover:text-[#c42342] duration-500 p-4">Sobre</Link></li>}
             {usuario.token !== "" && (
               <li onClick={toggleMenu} className="max-h-10 max-w-10 overflow-hidden rounded-full border border-black hover:text-[#c42342] dark:border-white hover:border-[#c42342] dark:hover:border-[#c42342] duration-300">
                 {usuario.foto === " " || usuario.foto === "" ?
@@ -172,8 +171,12 @@ export function NavBar() {
                 </ul>
               </li>
             )}
-            {usuario.token === "" && <li><Link id="logar" to="/login" className="hover:text-[#c42342] duration-500 p-4">Login</Link></li>}
-            {usuario.token === "" && <li><Link id="registrar" to="/cadastrar" className="hover:text-[#c42342] duration-500 p-4">Registre-se</Link></li>}
+            {usuario.token === "" &&
+              <li><Link id="logar" to="/login" className="hover:text-[#c42342] duration-500 p-4">Login</Link></li>
+            }
+            {usuario.token === "" &&
+              <li><Link id="registrar" to="/cadastrar" className="hover:text-[#c42342] duration-500 p-4">Registre-se</Link></li>
+            }
           </ul>
         </nav>
       </header>
