@@ -76,16 +76,16 @@ function CardProduto({ produto }: CardProdutoProps) {
   
   return (
     <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-64'>
-      {favorito ?
+         {favorito ?
         <Heart
           size={40}
           weight='fill'
-          className={'absolute top-1 right-1 p-2 cursor-pointer text-red-500 duration-300'}
+          className={'absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-red-500 duration-300'}
           onClick={toggleFavorito}
         /> :
         <Heart
           size={40}
-          className={'absolute top-1 right-1 p-2 cursor-pointer text-black duration-300'}
+          className={'absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-black dark:text-white duration-300'}
           onClick={toggleFavorito}/>
       }
       {produto.foto === null || produto.foto === undefined || produto.foto === '' ?
