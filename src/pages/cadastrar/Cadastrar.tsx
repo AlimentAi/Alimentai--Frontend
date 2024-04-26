@@ -19,7 +19,8 @@ export function Cadastrar() {
     email: '',
     senha: '',
     foto: '',
-    type: ''
+    tipo: undefined,
+    produto: null
   })
 
   const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
@@ -28,7 +29,8 @@ export function Cadastrar() {
     email: '',
     senha: '',
     foto: '',
-    type: ''
+    tipo: undefined,
+    produto: null
   })
 
   useEffect(() => {
@@ -144,15 +146,17 @@ export function Cadastrar() {
   }
 
   function toggleTermos() {
-    const aceitarTermos = document.getElementById("aceitar-termos")
-
     setCheckTermos(!checkTermos)
   }
 
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (confirmarSenha === usuario.senha && senhaValida && checkTermos && usuario.type !== '') {
+    if (confirmarSenha === usuario.senha &&
+      senhaValida &&
+      checkTermos &&
+      (usuario.tipo === 'consumidor' || usuario.tipo === 'produtor')) {
+      
       try {
         await cadastrarUsuario(usuario, setUsuarioResposta)
         const mensagemSucesso = (
@@ -195,8 +199,7 @@ export function Cadastrar() {
         );
         toast.info(mensagemSenhaFraca);
         break
-      case usuario.type === 'consumidor' || usuario.type === 'produtor':
-        alert(usuario.type)
+      case usuario.tipo === 'consumidor' || usuario.tipo === 'produtor':
         toast.info('Informe se você é um consumidor ou produtor')
         break
       case checkTermos:
@@ -276,28 +279,35 @@ export function Cadastrar() {
                 <li id="sem-espaco">Não pode conter espaços.</li>
               </ul>
               <div className="flex w-full justify-around flex-wrap">
-                <div className={`${usuario.type === 'consumidor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>
+                <div className={`${usuario.tipo === 'consumidor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>
                   <input
                     id="consumidor"
                     type="radio"
-                    name="type"
+                    name="tipo"
                     className="invisible"
                     value="consumidor"
-                    defaultChecked
-                    onClick={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
+                    onChange={
+                      (e: ChangeEvent<HTMLInputElement>) => {
+                        if (e.target.checked) atualizarEstado(e);
+                      }
+                    } />
                   <label htmlFor="consumidor" className="flex flex-col items-center">
                     <Basket size={42} />
                     Sou consumidor
                   </label>
                 </div>
-                <div className={`${usuario.type === 'produtor' ? 'text-orange-600 dark:text-orange-400' : ''} duration-300`}>
+                <div className={`${usuario.tipo === 'produtor' ? 'text-orange-600 dark:text-orange-400' : ''} duration-300`}>
                   <input
                     id="produtor"
                     type="radio"
-                    name="type"
+                    name="tipo"
                     className="invisible"
                     value="produtor"
-                    onClick={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
+                    onChange={
+                      (e: ChangeEvent<HTMLInputElement>) => {
+                        if (e.target.checked) atualizarEstado(e)
+                      }
+                    } />
                   <label htmlFor="produtor" className="flex flex-col items-center">
                     <Carrot size={42} />
                     Sou produtor
