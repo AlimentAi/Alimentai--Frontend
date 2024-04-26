@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png"
 import { useContext, useEffect, useState } from "react";
-import { Sun, Moon, Desktop } from "@phosphor-icons/react";
+import { Sun, Moon, Desktop, ShoppingCartSimple } from "@phosphor-icons/react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Storefront } from "@phosphor-icons/react";
 
@@ -118,6 +118,13 @@ export function NavBar() {
 
           {usuario.token !== '' &&
             <li><Link id='areaVendedor' to='/areaVendedor' className='hover:text-[#c42342] duration-500 p-4 flex gap-1'> <Storefront size={24}/> Área do Vendedor</Link></li>}
+          {usuario.token !== '' &&
+            <li >
+              <Link id='carrinho' to='/carrinho' className='hover:text-[#c42342] duration-500 p-4 flex gap-2 items-center'>
+                <ShoppingCartSimple className="w-8 h-8 flex text-[#629d60] bg-[#e4f6e3] rounded-full p-2" size={24}/>
+                <span className="text-start text-sm font-medium">Meu <br />Carrinho</span>
+              </Link>
+            </li>}
           {usuario.token !== '' &&
             <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>}
           {usuario.token !== '' &&

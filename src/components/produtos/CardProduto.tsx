@@ -15,7 +15,7 @@ function CardProduto({ produto }: CardProdutoProps) {
   const {usuario} = useContext(AuthContext);
   const userId = usuario.id;
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   function incrementItem() {
     if (quantidade < produto.quantidade)
@@ -32,7 +32,7 @@ function CardProduto({ produto }: CardProdutoProps) {
   }
   
   function atualizarQuantidade(e: ChangeEvent<HTMLInputElement>) {
-    let value = Number(e.target.value)
+    const value = Number(e.target.value)
     
     if (value > 0) {
       e.target.value = value.toString();
