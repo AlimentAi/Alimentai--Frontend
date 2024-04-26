@@ -19,7 +19,7 @@ export function Cadastrar() {
     email: '',
     senha: '',
     foto: '',
-    type: 'consumidor'
+    type: ''
   })
 
   const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
@@ -28,7 +28,7 @@ export function Cadastrar() {
     email: '',
     senha: '',
     foto: '',
-    type: 'consumidor'
+    type: ''
   })
 
   useEffect(() => {
@@ -152,7 +152,7 @@ export function Cadastrar() {
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (confirmarSenha === usuario.senha && senhaValida && checkTermos) {
+    if (confirmarSenha === usuario.senha && senhaValida && checkTermos && usuario.type !== '') {
       try {
         await cadastrarUsuario(usuario, setUsuarioResposta)
         const mensagemSucesso = (
@@ -203,6 +203,9 @@ export function Cadastrar() {
           </div>
         );
         toast.info(mensagemTermosNaoAceitos);
+        break
+      case usuario.type !== 'consumidor' && usuario.type !== 'vendedor':
+        alert('Informe se você é um consumidor ou produtor')
         break
     }
   }

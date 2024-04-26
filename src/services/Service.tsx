@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const api = axios.create({
     baseURL: 'https://generation-pi-ecommerce.onrender.com'
+    //baseURL: 'http://localhost:8080/' //Rota para restes locais
 })
 
 export const cadastrarUsuario = async(dados: Object, setDados: Function) => {

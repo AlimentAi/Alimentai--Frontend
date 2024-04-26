@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png"
 import { useContext, useEffect, useState } from "react";
-import { Sun, Moon, Desktop } from "@phosphor-icons/react";
+import { Sun, Moon, Desktop, User } from "@phosphor-icons/react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Storefront } from "@phosphor-icons/react";
 
@@ -9,6 +9,8 @@ export function NavBar() {
   const [theme, setTheme] = useState(getTheme)
 
   const { usuario, handleLogout } = useContext(AuthContext)
+
+  const [showMenu, setShowMenu] = useState(false)
 
   const endpoint = useLocation().pathname
 
@@ -53,7 +55,7 @@ export function NavBar() {
 
     const buttonColor = 'text-[#c44382]'
 
-    if (endpoint.includes('/login') || endpoint.includes('/cadastrar') || usuario.token === '') {
+    if (endpoint.includes('/login') || endpoint.includes('/cadastrar') || (usuario.token === '' && endpoint === '/')) {
       navbar?.classList.add('absolute')
       navbar?.classList.remove('shadow-lg')
       navbarLogo?.classList.add('invisible')
@@ -76,7 +78,7 @@ export function NavBar() {
       logar?.classList.add(buttonColor)
     if (usuario.token !== '' && endpoint === '/')
       home?.classList.add(buttonColor)
-      
+
     switch (true) {
       case endpoint.includes('home'):
         home?.classList.add(buttonColor)
@@ -99,41 +101,67 @@ export function NavBar() {
     }
   }, [endpoint, usuario.token])
 
+  function toggleMenu() {
+    const userMenu = document.querySelector("#user-menu")
+    setShowMenu(!showMenu)
+
+    if (showMenu) {
+      userMenu?.classList.remove("invisible")
+      userMenu?.classList.add("visible")
+    } else {
+      userMenu?.classList.remove("visible")
+      userMenu?.classList.add("invisible")
+    }
+  }
+
   return (
-    <header id='navbar' className="flex justify-center w-full h-20 shadow-lg">
-      <nav className="w-full h-full flex items-center justify-between px-8">
-        <Link id="navbar-logo" to='/'>
-          <div className="w-auto flex  items-center gap-1">
-            <img src={Logo} className="w-16" alt="Logo" />
-            <h1 className="text-xl font-semibold">AlimentaA! - Raizes Sustentáveis</h1>
-          </div>
-        </Link>
+    <>
+      <header id='navbar' className="flex justify-center w-full h-20 shadow-lg">
+        <nav className="w-full h-full flex items-center justify-between px-8">
+          <Link id="navbar-logo" to='/'>
+            <div className="w-auto flex  items-center gap-1">
+              <img src={Logo} className="w-16" alt="Logo" />
+              <h1 className="text-xl font-semibold">AlimentaA! - Raizes Sustentáveis</h1>
+            </div>
+          </Link>
 
-        <ul className="flex items-center gap-4">
-          <button onClick={changeTheme} className="duration-500 p-4 dark:hover:text-yellow-300 hover:text-cyan-500">
-            {theme === 'light' && <Sun size={24} />}
-            {theme === 'dark' && <Moon size={24} />}
-            {(theme !== 'dark' && theme !== 'light') && <Desktop size={24} />}
-          </button>
+          <ul className="flex items-center gap-4">
+            <button onClick={changeTheme} className="duration-500 p-4 dark:hover:text-yellow-300 hover:text-cyan-500">
+              {theme === 'light' && <Sun size={24} />}
+              {theme === 'dark' && <Moon size={24} />}
+              {(theme !== 'dark' && theme !== 'light') && <Desktop size={24} />}
+            </button>
 
-          {usuario.token !== '' &&
-            <li><Link id='areaVendedor' to='/areaVendedor' className='hover:text-[#c42342] duration-500 p-4 flex gap-1'> <Storefront size={24}/> Área do Vendedor</Link></li>}
-          {usuario.token !== '' &&
-            <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>}
-          {usuario.token !== '' &&
-            <li><Link id='produtos' to='/listaProdutos' className='hover:text-[#c42342] duration-500 p-4'>Produtos</Link></li>}
-          {usuario.type === 'produtor' || usuario.type === 'administrador' &&
-            <li><Link id='categorias' to='/listaCategorias' className='hover:text-[#c42342] duration-500 p-4'>Categorias</Link></li>}
-          {usuario.token !== '' &&
-            <li><Link id='sobre' to='/sobre' className='hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>}
-          {usuario.token !== '' &&
-            <li onClick={handleLogout}><Link to='/' className='hover:text-[#c42342] duration-500 p-4'>Sair</Link></li>}
-          {usuario.token === '' &&
-            <li><Link id='logar' to='/login' className='hover:text-[#c42342] duration-500 p-4'>Login</Link></li>}
-          {usuario.token === '' &&
-            <li><Link id='registrar' to='/cadastrar' className='hover:text-[#c42342] duration-500 p-4'>Registre-se</Link></li>}
-        </ul>
-      </nav>
-    </header>
+            {usuario.token !== '' && (usuario.type === 'produtor' || usuario.type === 'administrador') &&
+              <li><Link id='areaVendedor' to='/areaVendedor' className='hover:text-[#c42342] duration-500 p-4 flex gap-1'> <Storefront size={24} /> Área do Vendedor</Link></li>}
+            {usuario.token !== '' &&
+              <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>}
+            {usuario.token !== '' &&
+              <li><Link id='produtos' to='/listaProdutos' className='hover:text-[#c42342] duration-500 p-4'>Produtos</Link></li>}
+            {//usuario.token !== '' && usuario.type === 'consumidor' &&
+              <li><Link id='carrinho' to='/carrinho' className="hover:text-[#c42342] duration-500 p-4">Carrinho</Link></li>}
+            {usuario.token !== '' && (usuario.type === 'produtor' || usuario.type === 'administrador') &&
+              <li><Link id='categorias' to='/listaCategorias' className='hover:text-[#c42342] duration-500 p-4'>Categorias</Link></li>}
+            {usuario.token !== '' &&
+              <li><Link id='sobre' to='/sobre' className='hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>}
+            {usuario.token !== '' &&
+              <li onClick={toggleMenu} className="max-h-10 max-w-10 overflow-hidden rounded-full border border-black hover:text-[#c42342] dark:border-white hover:border-[#c42342] dark:hover:border-[#c42342] duration-300">
+                {usuario.foto === '' ?
+                  <User size={32} className="h-full w-auto" /> :
+                  <img src={usuario.foto} alt="Menu do usuário" className="w-auto max-h-full" />
+                }
+                <ul id="user-menu" className="z-50 invisible absolute right-0 mt-4 mr-4 flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300">
+                  <li><Link to='/editarUsuario' className='hover:text-[#c42342] duration-500 my-4 p-4'>Configurações</Link></li>
+                  <li><Link to='/' className='hover:text-[#c42342] duration-500 m-4 py-4' onClick={handleLogout} >Sair</Link></li>
+                </ul>
+              </li>}
+            {usuario.token === '' &&
+              <li><Link id='logar' to='/login' className='hover:text-[#c42342] duration-500 p-4'>Login</Link></li>}
+            {usuario.token === '' &&
+              <li><Link id='registrar' to='/cadastrar' className='hover:text-[#c42342] duration-500 p-4'>Registre-se</Link></li>}
+          </ul>
+        </nav>
+      </header>
+    </>
   )
 }
