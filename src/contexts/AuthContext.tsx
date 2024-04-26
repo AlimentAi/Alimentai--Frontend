@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from "react"
 import UsuarioLogin from "../models/UsuarioLogin"
 import { logarUsuario } from "../services/Service"
+import { toast } from "react-toastify"
 
 interface AuthContextProps {
     usuario: UsuarioLogin
@@ -31,11 +32,23 @@ export function AuthProvider( {children}: AuthProviderProps ) {
         setIsLoading(true)
         try {
             await logarUsuario(userLogin, setUsuario)
-            alert("Usuario logado com sucesso!")
+            const mensagemSucess = (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <span className="font-semibold">Usuário logado com sucesso!</span>
+                  <img src="https://i.imgur.com/FbwTs9u.png" alt="Usuário Logado com Sucesso" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+                </div>
+              );
+              toast.success(mensagemSucess);
             setIsLoading(false)
         } catch (error) {
             console.log(error)
-            alert("Dados do usuario inconsistentes")
+            const mensagemFailed = (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <span className="font-semibold">Dados do usuário inconsistentes</span>
+                  <img src="https://i.imgur.com/3cYeq8E.png" alt="Dados inconsistentes" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+                </div>
+              );
+              toast.error(mensagemFailed);
             setIsLoading(false)
         }
     }
