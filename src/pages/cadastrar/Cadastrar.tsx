@@ -178,7 +178,7 @@ export function Cadastrar() {
       case confirmarSenha === usuario.senha:
         const mensagemSenhaInconsistente = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="font-semibold">Dados inconsistentes. Verifique as informações de cadastro.</span>
+            <span className="font-semibold">Dados inconsistentes, as senhas precisam ser iguais.</span>
             <img src="https://i.imgur.com/aAwsVDm.png" alt="Dados Inconsistentes" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
           </div>
         );
@@ -199,7 +199,7 @@ export function Cadastrar() {
         const mensagemTermosNaoAceitos = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span className="font-semibold">Você precisa aceitar os termos de uso.</span>
-            <img src="https://i.imgur.com/mnS6hn9.png" alt="Termos de Uso Não Aceitos" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            <img src="https://i.imgur.com/hjK8SOV.png" alt="Termos de Uso Não Aceitos" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
           </div>
         );
         toast.info(mensagemTermosNaoAceitos);
@@ -286,7 +286,7 @@ export function Cadastrar() {
                     Sou consumidor
                   </label>
                 </div>
-                <div className={`${usuario.type === 'produtor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>
+                <div className={`${usuario.type === 'produtor' ? 'text-orange-600 dark:text-orange-400' : ''} duration-300`}>
                   <input
                     id="produtor"
                     type="radio"

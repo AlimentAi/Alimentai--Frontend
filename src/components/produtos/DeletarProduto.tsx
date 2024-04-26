@@ -28,7 +28,7 @@ function DeletarProduto() {
                 const mensagemInativo = (
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       <span className="font-semibold">Vish você esta um tempo inativo, faça login novamente por favor</span>
-                      <img src="https://i.imgur.com/qR3xwhs.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+                      <img src="https://i.imgur.com/EM7Oc1r.png" alt="Tempo Inativo" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
                     </div>
                   );
           toast.error(mensagemInativo);
