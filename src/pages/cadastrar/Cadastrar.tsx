@@ -166,7 +166,7 @@ export function Cadastrar() {
         const mensagemErro = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span className="font-semibold">Erro ao cadastrar o Usuário</span>
-            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Erro ao Cadastrar Usuário" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Erro ao Cadastrar Usuário" style={{ width: '100px', height: '100px', marginTop: '5px' }} />
           </div>
         );
         toast.error(mensagemErro);
@@ -179,7 +179,7 @@ export function Cadastrar() {
         const mensagemSenhaInconsistente = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span className="font-semibold">Dados inconsistentes, as senhas precisam ser iguais.</span>
-            <img src="https://i.imgur.com/aAwsVDm.png" alt="Dados Inconsistentes" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            <img src="https://i.imgur.com/aAwsVDm.png" alt="Dados Inconsistentes" style={{ width: '100px', height: '100px', marginTop: '2px' }} />
           </div>
         );
         toast.info(mensagemSenhaInconsistente);
@@ -190,7 +190,7 @@ export function Cadastrar() {
         const mensagemSenhaFraca = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span className="font-semibold">A senha não atende aos requisitos mínimos.</span>
-            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Senha Fraca" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Senha Fraca" style={{ width: '100px', height: '100px', marginTop: '5px' }} />
           </div>
         );
         toast.info(mensagemSenhaFraca);
@@ -199,7 +199,7 @@ export function Cadastrar() {
         const mensagemTermosNaoAceitos = (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span className="font-semibold">Você precisa aceitar os termos de uso.</span>
-            <img src="https://i.imgur.com/hjK8SOV.png" alt="Termos de Uso Não Aceitos" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+            <img src="https://i.imgur.com/hjK8SOV.png" alt="Termos de Uso Não Aceitos" style={{ width: '100px', height: '100px', marginTop: '2px' }} />
           </div>
         );
         toast.info(mensagemTermosNaoAceitos);

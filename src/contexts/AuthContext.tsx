@@ -42,13 +42,13 @@ export function AuthProvider( {children}: AuthProviderProps ) {
             setIsLoading(false)
         } catch (error) {
             console.log(error)
-            const mensagemSucess = (
+            const mensagemFailed = (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <span className="font-semibold">Dados do usuario inconsistentes</span>
-                  <img src="https://i.imgur.com/dG7J8Gh.png" alt="Dados inconsistentes" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
+                  <span className="font-semibold">Dados do usuário inconsistentes</span>
+                  <img src="https://i.imgur.com/3cYeq8E.png" alt="Dados inconsistentes" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
                 </div>
               );
-              toast.success(mensagemSucess);
+              toast.error(mensagemFailed);
             setIsLoading(false)
         }
     }
