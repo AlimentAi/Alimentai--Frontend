@@ -23,6 +23,7 @@ export function AuthProvider({ children }: AuthProviderProps ) {
         email: "",
         senha: "",
         foto: "",
+        tipo: undefined,
         token: ""
     })
 
@@ -38,7 +39,8 @@ export function AuthProvider({ children }: AuthProviderProps ) {
                   <img src="https://i.imgur.com/FbwTs9u.png" alt="Usuário Logado com Sucesso" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
                 </div>
               );
-              toast.success(mensagemSucess);
+              toast.success(mensagemSucess)
+
             setIsLoading(false)
         } catch (error) {
             console.log(error)
@@ -60,6 +62,7 @@ export function AuthProvider({ children }: AuthProviderProps ) {
             email: "",
             senha: "",
             foto: "",
+            tipo: undefined,
             token: ""
         })
     }

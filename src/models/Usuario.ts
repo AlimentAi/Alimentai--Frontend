@@ -1,4 +1,4 @@
-import Postagem from "./Produto";
+import Produto from "./Produto";
 
 export default interface Usuario {
     id: number;
@@ -6,6 +6,6 @@ export default interface Usuario {
     email: string;
     foto: string;
     senha: string;
-    type: 'administrador' | 'vendedor' | 'consumidor';
-    postagem: Postagem | null;
+    tipo: undefined | 'administrador' | 'produtor' | 'consumidor';
+    produto: Produto | null;
 }
