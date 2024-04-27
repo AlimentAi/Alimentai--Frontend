@@ -168,6 +168,7 @@ export function FormularioProduto() {
           name='quantidade'
           className="w-[50%] border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
           value={produto.quantidade}
+          min={0}
           onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
         />
 

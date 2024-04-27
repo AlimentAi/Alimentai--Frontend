@@ -1,9 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, ChangeEvent } from 'react';
 import { Heart, ShoppingCart, PencilSimpleLine, ImageBroken, Minus, Plus, Trash } from '@phosphor-icons/react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFavorite } from '../../contexts/FavoriteContext';
 import Produto from '../../models/Produto';
+import { atualizar } from '../../services/Service';
+import { toast } from 'react-toastify';
+import { toastAlerta } from '../../utils/toastAlerta';
 
 interface CardProdutoProps {
   produto: Produto;
@@ -68,8 +71,29 @@ function CardProduto({ produto }: CardProdutoProps) {
     setFavorito(!favorito);
   }
 
-  function addToCart() {
-    alert('Ainda não implementado!');
+  async function addToCart() {
+    const newProduto = {...produto, quantidade: produto.quantidade - quantidade}
+
+    if (quantidade === 0) {
+      toastAlerta('Você não pode adicionar algo vazio ao carrinho', 'info')
+      return
+    }
+
+    // Adicionar ao CartContext
+
+    /*try {
+      await atualizar('/produtos', newProduto, Function, {
+        headers: {
+          'Authorization': usuario.token
+        }
+      })
+
+      toastAlerta(`${quantidade} ${produto.nome}s foi adicionado ao carrinho`, 'sucesso')
+
+    } catch(error: any) {
+      toast.error('Erro ao adicionar item ao carrinho')
+      console.log(error)
+    }*/
   }
 
   function editarProduto() {
@@ -99,7 +123,7 @@ function CardProduto({ produto }: CardProdutoProps) {
       }
       {produto.foto === null || produto.foto === undefined || produto.foto === '' ?
         <ImageBroken size={64} className='mx-auto w-full h-auto max-h-56 bg-[#88888844]' /> :
-        <img src={produto.foto} className='w-full' alt={produto.nome} />
+        <img src={produto.foto} className='w-full max-h-56' alt={produto.nome} />
       }
       <div className='p-4 flex flex-col justify-center items-center'>
         <p className='text-start text-2xl font-bold mb-4'>{produto.nome}</p>

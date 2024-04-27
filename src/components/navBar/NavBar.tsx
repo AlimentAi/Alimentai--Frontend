@@ -55,7 +55,7 @@ export function NavBar() {
 
     if (
       endpoint.includes("/login") ||
-      endpoint.includes("/cadastrar") ||
+      endpoint === "/cadastrar" ||
       (usuario.token === "" && endpoint === "/")
     ) {
       navbar?.classList.add("absolute");

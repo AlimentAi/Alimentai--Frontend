@@ -70,20 +70,35 @@ function ListaProdutos() {
     (categoriaSelecionada === "" || produto.categoria.id === parseInt(categoriaSelecionada))
   );
 
+  const cadastrarProduto = (
+    <Link to='/cadastrarProduto'>
+      <button
+        className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+        style={{ fontSize: '15px' }}
+      >
+        Cadastrar novo Produto
+      </button>
+    </Link>
+  )
+
   return (
     <>
       {produtos.length === 0 && (
-        <div className="flex justify-center min-h-96">
-          <Vortex
-            height="100"
-            width="100"
-            ariaLabel="vortex-loading"
-            wrapperStyle={{}}
-            wrapperClass="vortex-wrapper"
-            visible={true}
-            colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
-          />
-        </div>
+        <>
+          <div className="flex flex-col items-center justify-center my-4 gap-4">
+            <Vortex
+              height="100"
+              width="100"
+              ariaLabel="vortex-loading"
+              wrapperStyle={{}}
+              wrapperClass="vortex-wrapper"
+              visible={true}
+              colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
+            />
+          <p>Parece que nenhum produto foi postado ainda.</p>
+          <p>Aguarde até que um vendedor poste algo.</p>
+          </div>
+        </>
       )}
       <div className="flex justify-center w-full px-20 my-10">
         <div className="container flex flex-col flex-container items-center">
@@ -110,14 +125,7 @@ function ListaProdutos() {
                   className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
                   style={{ marginRight: '20px', width: '400px' }}
                 />
-                <Link to='/cadastrarProduto'>
-                  <button
-                    className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
-                    style={{ fontSize: '15px' }}
-                  >
-                    Cadastrar novo Produto
-                  </button>
-                </Link>
+                {cadastrarProduto}
               </div>
             </>
           )}
