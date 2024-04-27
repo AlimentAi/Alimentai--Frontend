@@ -135,7 +135,7 @@ export function NavBar() {
             {usuario.token !== '' &&
               <li><Link id='home' to='/home' className='hover:text-[#c42342] duration-500 p-4'>Home</Link></li>
             }
-            {usuario.token !== '' && usuario.tipo === 'consumidor' &&
+            {usuario.token !== '' &&
               <li><Link id='produtos' to='/listaProdutos' className='hover:text-[#c42342] duration-500 p-4'>Produtos</Link></li>
             }
             {usuario.token !== '' && (usuario.tipo === 'produtor' || usuario.tipo === 'administrador') &&
@@ -144,10 +144,10 @@ export function NavBar() {
             {usuario.token !== '' &&
               <li><Link id='sobre' to='/sobre' className='hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>
             }
-            {usuario.token !== "" && (usuario.tipo === "consumidor" || usuario.tipo === undefined) && (
+            {usuario.token !== "" && (
               <li><Link id="favoritos" to="/favoritos" className="hover:text-[#c42342] duration-500 p-4">Favoritos</Link></li>
             )}
-            {usuario.token !== '' && (usuario.tipo === 'produtor' || usuario.tipo === 'administrador') &&
+            {usuario.token !== '' && usuario.tipo === 'produtor' &&
               <li><Link id='areaVendedor' to='/areaVendedor' className='hover:text-[#c42342] duration-500 p-4 flex gap-1'>
                 <Storefront size={24} /> Área do Vendedor</Link>
               </li>
