@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer"
 import Home from "./pages/home/Home"
 import { Login } from "./pages/login/Login"
 import { AuthContext, AuthProvider } from "./contexts/AuthContext"
+import FavoritosPage from "./pages/favoritos/FavoritosPage"
 import { Cadastrar } from "./pages/cadastrar/Cadastrar"
 import DeletarCategoria from "./components/categorias/DeletarCategoria"
 import { FormularioCategoria } from "./components/categorias/FormularioCategoria"
@@ -17,6 +18,8 @@ import DeletarProduto from "./components/produtos/DeletarProduto"
 import { FormularioProduto } from "./components/produtos/FormularioProduto"
 import { AreaVendedor } from "./pages/areaVendedor/AreaVendedor"
 import { Carrinho } from "./pages/carrinho/Carrinho"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const {usuario} = useContext(AuthContext)
@@ -24,6 +27,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <ToastContainer />
         <NavBar />
         <Routes>
           <Route path='/' element={
@@ -34,6 +38,7 @@ function App() {
           <Route path='/cadastrar' element={<Cadastrar />} />
           <Route path='/sobre' element={<Sobre />} />
           <Route path='/contato' element={<Todo />} />
+          <Route path='/favoritos' element={<FavoritosPage />} />
           <Route path='/listaProdutos' element={<ListaProdutos />} />
           <Route path='/cadastrarProduto' element={<FormularioProduto />} />
           <Route path='/editarProduto/:id' element={<FormularioProduto />} />
