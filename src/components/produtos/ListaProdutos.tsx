@@ -125,7 +125,7 @@ function ListaProdutos() {
                   className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
                   style={{ marginRight: '20px', width: '400px' }}
                 />
-                {cadastrarProduto}
+                {(usuario.tipo === "produtor" || usuario.tipo === "administrador") && cadastrarProduto}
               </div>
             </>
           )}

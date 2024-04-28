@@ -127,7 +127,7 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
       }
       <div className='p-4 flex flex-col justify-center items-center'>
         <p className='text-start text-2xl font-bold mb-4'>{produto.nome}</p>
-        <p className='w-full flex items-center justify-center py-2 rounded-lg duration-300'>{produto.descricao}</p>
+        <p className='w-full h-20 text-sm text-justify py-2'>{produto.descricao}</p>
         <p>Peso aprox: 250g</p>
         <p className='text-2xl font-bold text-start my-2'>{Intl.NumberFormat('pt-BR', {
           style: 'currency',

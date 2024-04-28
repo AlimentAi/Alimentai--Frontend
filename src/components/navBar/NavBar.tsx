@@ -161,7 +161,7 @@ export function NavBar() {
             </li>}
             {usuario.token !== "" && (
               <li onClick={toggleMenu} className="max-h-10 max-w-10 overflow-hidden rounded-full border border-black hover:text-[#c42342] dark:border-white hover:border-[#c42342] dark:hover:border-[#c42342] duration-300">
-                {usuario.foto === " " || usuario.foto === "" ?
+                {usuario.foto === " " || usuario.foto === "" || usuario.foto === null ?
                   <User size={32} className="h-full w-auto" /> :
                   <img src={usuario.foto} alt="Menu do usuário" className="w-auto max-h-full" />
                 }

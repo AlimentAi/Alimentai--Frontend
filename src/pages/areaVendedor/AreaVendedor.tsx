@@ -43,7 +43,7 @@ export function AreaVendedor() {
         </button>
       </div>
       <SearchBar titulo="SEUS PRODUTOS" />
-      <div className="grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 max-h-auto">
+      <div>
         {produtos.filter(produto => produto.usuario.id === usuario.id).map((produto) => (
           <CardVendedor key={produto.id} produto={produto} />
         ))}
