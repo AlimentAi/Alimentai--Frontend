@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 
-export function toastAlerta(mensagem: string, tipo: 'sucesso' | 'info' | 'erro') {
+export function toastAlerta(mensagem: string, tipo: 'sucess' | 'info' | 'error') {
   switch (tipo) {
-    case 'sucesso':
+    case 'sucess':
       toast.success(mensagem, {
         position: 'top-right',
         autoClose: 2000,
@@ -28,7 +28,7 @@ export function toastAlerta(mensagem: string, tipo: 'sucesso' | 'info' | 'erro')
       });
       break;
 
-    case 'erro':
+    case 'error':
       toast.error(mensagem, {
         position: 'top-right',
         autoClose: 2000,

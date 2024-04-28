@@ -10,7 +10,7 @@ export function ItemLista() {
 
         <div className="w-full flex items-center justify-around">
           <td>
-            <h1 className="text-xl">Semenete Peletizada De Alface Brunela 1.000 Sementes Feltrin</h1>
+            <h1 className="text-xl">Semente Peletizada De Alface Brunela 1.000 Sementes Feltrin</h1>
           </td>
 
           <td className="">
