@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import { Sun, Moon, Desktop, User, Storefront, ShoppingCartSimple } from "@phosphor-icons/react";
+import { Sun, Moon, Desktop, User, Storefront, ShoppingCartSimple, ShoppingCart, UserGear, SignOut } from "@phosphor-icons/react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FavoriteContext } from "../../contexts/FavoriteContext";
 
@@ -99,6 +99,10 @@ export function NavBar() {
         cadastrar?.classList.add(buttonColor);
         break;
     }
+    
+    if (showMenu) {
+      setShowMenu(false)
+    }
   }, [endpoint, usuario.token]);
 
   function toggleMenu() {
@@ -167,12 +171,16 @@ export function NavBar() {
             )}
             {showMenu && <div onClick={toggleMenu} className="z-40 absolute top-0 bottom-0 left-0 right-0 w-full h-full"/>}
             <div onClick={toggleMenu} className={`${showMenu ? "opacity-100" : "opacity-0"} duration-300`}>
-              <div id="user-menu" className={`z-50 absolute right-4 top-20 p-2 flex flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300`}>
+              <div id="user-menu" className={`${showMenu ? "top-20" : "-top-40"} z-50 absolute right-4 top-20 p-2 flex flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300`}>
+                {usuario.tipo === "produtor" || usuario.tipo === "administrador" &&
+                  <Link to="/carrinho" className="hover:text-[#c42342] duration-500 p-2 w-full">
+                    <div className="flex gap-2"><ShoppingCart size={32} /> Meu Carrinho</div>
+                  </Link>}
                 <Link to="/editarUsuario" className="hover:text-[#c42342] duration-500 p-2 w-full">
-                  Configurações
+                  <div className="flex gap-2"><UserGear size={32} /> Configurações</div>
                 </Link>
                 <Link to="/" className="hover:text-[#c42342] duration-500 p-2 w-full" onClick={handleLogout}>
-                  Sair
+                  <div className="flex gap-2"><SignOut size={32} /> Sair</div>
                 </Link>
               </div>
             </div>
