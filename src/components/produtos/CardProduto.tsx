@@ -79,21 +79,7 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
       return
     }
 
-    // Adicionar ao CartContext
-
-    /*try {
-      await atualizar('/produtos', newProduto, Function, {
-        headers: {
-          'Authorization': usuario.token
-        }
-      })
-
-      toastAlerta(`${quantidade} ${produto.nome}s foi adicionado ao carrinho`, 'sucesso')
-
-    } catch(error: any) {
-      toast.error('Erro ao adicionar item ao carrinho')
-      console.log(error)
-    }*/
+    toastAlerta(`${quantidade} ${produto.nome}s foi adicionado ao carrinho`, 'sucess')
   }
 
   function editarProduto() {
