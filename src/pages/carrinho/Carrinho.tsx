@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ItemListaCarrinho } from "../../components/itemLista/ItemListaCarrinho";
 import { SearchBar } from "../../components/searchBar/SearchBar";
 import { CartContext } from "../../contexts/CartContext";
+import { Link } from "react-router-dom";
 
 export function Carrinho() {
   const { carrinho } = useContext(CartContext)
@@ -41,11 +42,17 @@ export function Carrinho() {
               </div>
             </tr>
           </thead>
+          {carrinho.length === 0 ?
+          <tbody className="flex flex-col items-center justify-around w-full h-full">
+            <p className="text-xl font-bold">Seu carrinho está vazio. Deseja ir às compras?</p>
+            <Link to='/listaProdutos'><button className="h-full px-8 border rounded-lg text-2xl font-bold">Ir às compras</button></Link>
+          </tbody> :  
           <tbody className="flex flex-col">
             {carrinho.map((item) => {
               return <ItemListaCarrinho key={item.id} id={item.id} produto={item.produto} quantidadeDesejada={item.quantidadeDesejada} />
             })}
           </tbody>
+          }
         </table>
 
         <div className="flex flex-col items-start gap-4 bg-transparent p-6 rounded-md shadow-xl">
