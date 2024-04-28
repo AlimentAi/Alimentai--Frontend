@@ -1,19 +1,43 @@
-import { MagnifyingGlass } from "@phosphor-icons/react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface PropsSearchBar {
-  titulo: string
+  titulo: string;
+  handleFiltrarProdutos: (filtro: string) => void;
 }
 
 export function SearchBar(props: PropsSearchBar) {
-  return(
-    <div className="w-[90%] bg-[#ebfbea] dark:bg-[#394B3E] py-3 px-10 mb-10 flex flex-1 items-center justify-between rounded-full">
-    <span className='font-normal text-3xl'>{props.titulo}</span>
-    <div className="w-[40%] relative flex">
-      <input type="search" className="w-full flex bg-purple-white shadow rounded-full border-0 p-3" placeholder="Search by name..." />
-      <div className="flex absolute right-1 top-1/2 -translate-y-1/2 bg-slate-100 rounded-full p-2">
-        <MagnifyingGlass size={24} />
+  const [filtroProduto, setFiltroProduto] = useState<string>("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const filtro = e.target.value;
+    setFiltroProduto(filtro);
+    props.handleFiltrarProdutos(filtro);
+  };
+
+  return (
+    <div className="w-[90%] bg-[#ebfbea] dark:bg-[#394B3E] py-6 px-10 mb-10 flex items-center justify-between rounded-full">
+      <div className="flex items-center">
+        <span className='font-normal text-3xl'>{props.titulo}</span>
+        <div className="ml-20 flex relative">
+          <input
+            type="text"
+            placeholder="Pesquisar por produto"
+            value={filtroProduto}
+            onChange={handleInputChange}
+            className='border-slate-800 rounded bg-white dark:bg-[#212b24] px-3 py-1 duration-300'
+            style={{ width: '400px' }}
+          />
+        </div>
       </div>
+      <Link to='/cadastrarProduto'>
+        <button
+          className={`p-3 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+          style={{ fontSize: '15px' }}
+        >
+          Cadastrar novo Produto
+        </button>
+      </Link>
     </div>
-  </div>
-  )
+  );
 }

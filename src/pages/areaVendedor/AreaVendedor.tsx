@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { SearchBar } from "../../components/searchBar/SearchBar";
@@ -7,10 +7,12 @@ import { CardVendedor } from "./CardVendedor";
 import { buscar } from "../../services/Service";
 import Produto from "../../models/Produto";
 
+
 export function AreaVendedor() {
   const { usuario } = useContext(AuthContext);
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState<Produto[]>([]); 
+  const [filtroProduto, setFiltroProduto] = useState<string>("");
 
   useEffect(() => {
     async function fetchProdutosDoVendedor() {
@@ -34,17 +36,19 @@ export function AreaVendedor() {
     }
   }, [usuario.id, usuario.tipo, navigate]);
 
+  const handleFiltrarProdutos = (filtro: string) => {
+    setFiltroProduto(filtro);
+  };
+
+  const produtosFiltrados = produtos.filter(produto => produto.usuario.id === usuario.id && produto.nome.toLowerCase().includes(filtroProduto.toLowerCase()));
+
   return (
     <div className="w-full flex flex-col items-center gap-8 p-8">
-      <div className="w-[70%] flex items-center justify-between pr-2 pl-2">
-        <h1 className="text-4xl">Área do Vendedor</h1>
-        <button className="w-48 bg-[#ffd6b2] rounded-full p-3">
-          <Link to="/cadastrarProduto">Anunciar Produto</Link>
-        </button>
+      <div className="w-[70%] flex items-center justify-between pr-2 pl-2 font-bold">
       </div>
-      <SearchBar titulo="SEUS PRODUTOS" />
+      <SearchBar titulo="ÁREA DO VENDEDOR" handleFiltrarProdutos={handleFiltrarProdutos} />
       <div>
-        {produtos.filter(produto => produto.usuario.id === usuario.id).map((produto) => (
+        {produtosFiltrados.map((produto) => (
           <CardVendedor key={produto.id} produto={produto} />
         ))}
       </div>
