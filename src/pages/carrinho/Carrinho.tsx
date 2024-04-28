@@ -1,7 +1,31 @@
+import { useContext, useEffect, useState } from "react";
 import { ItemListaCarrinho } from "../../components/itemLista/ItemListaCarrinho";
 import { SearchBar } from "../../components/searchBar/SearchBar";
+import { CartContext } from "../../contexts/CartContext";
 
 export function Carrinho() {
+  const { carrinho } = useContext(CartContext)
+  const [valorTotal, setValorTotal] = useState(0)
+  const [valorRestante, setValorRestante] = useState(99)
+
+  useEffect(() => {
+    let valor = 0
+
+    carrinho.map((item) => {
+      valor += item.quantidadeDesejada * item.produto.preco
+    })
+
+    setValorTotal(valor)
+  }, [carrinho])
+
+  useEffect(() => {
+    if (valorTotal < 99) {
+      setValorRestante(99 - valorTotal)
+    } else {
+      setValorRestante(0)
+    }
+  }, [valorTotal])
+
   return (
     <div className="w-full flex flex-col items-center justify-center gap-2 pt-20 p-8">
       <SearchBar titulo="Meu Carrinho" />
@@ -18,26 +42,27 @@ export function Carrinho() {
             </tr>
           </thead>
           <tbody className="flex flex-col">
-            <ItemListaCarrinho />
-            <ItemListaCarrinho />
-            <ItemListaCarrinho />
-            <ItemListaCarrinho />
+            {carrinho.map((item) => {
+              return <ItemListaCarrinho key={item.id} id={item.id} produto={item.produto} quantidadeDesejada={item.quantidadeDesejada} />
+            })}
           </tbody>
         </table>
 
         <div className="flex flex-col items-start gap-4 bg-transparent p-6 rounded-md shadow-xl">
           <h1 className="w-96 text-2xl text-start font-bold pb-1">Resumo do pedido</h1>
-          <p className="font-semibold text-[#607571]">Faltam apenas R$222,96 para Frete Grátis</p>
-          
+          <p className="font-semibold text-[#607571]">Faltam apenas {
+            Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorRestante)
+          } para Frete Grátis</p>
+
           <div className="w-full flex items-center gap-2">
-            <span className="w-28 text-sm text-start font-semibold text-[#607571]">R$ 50,00</span>
+            <span className="w-28 text-sm text-start font-semibold text-[#607571]">{valorTotal}</span>
             <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
               <div className="w-[16%] bg-emerald-400 h-2.5 rounded-full"></div>
             </div>
-            <span className="w-28 text-sm text-end font-semibold text-[#607571]">R$ 299,00</span>
+            <span className="w-28 text-sm text-end font-semibold text-[#607571]">R$ 99,00</span>
           </div>
 
-          <hr className="w-full"/>
+          <hr className="w-full" />
 
 
         </div>
