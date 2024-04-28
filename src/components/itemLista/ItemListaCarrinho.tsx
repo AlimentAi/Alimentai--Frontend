@@ -1,18 +1,32 @@
 /* eslint-disable prefer-const */
 import { Minus, Plus, Trash } from "@phosphor-icons/react"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useContext, useState } from "react"
 import imageLista from "../../assets/alface-fresca.jpg"
+import Produto from "../../models/Produto";
+import { CartContext } from "../../contexts/CartContext";
 
-export function ItemListaCarrinho() {
-  const [quantidade, setQuantidade] = useState(0);
+interface ItemListaCarrinhoProps {
+  id: number,
+  produto: Produto,
+  quantidadeDesejada: number
+}
+
+export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCarrinhoProps) {
+  const [quantidade, setQuantidade] = useState(quantidadeDesejada);
+  const {alterarQuantidade} = useContext(CartContext)
 
   function incrementItem() {
-    setQuantidade(quantidade + 1);
+    if (quantidade < produto.quantidade)
+      setQuantidade(quantidade + 1);
+      alterarQuantidade(id, quantidade)
+    if (quantidade > produto.quantidade)
+      setQuantidade(produto.quantidade)
   }
 
   function decrementItem() {
     if (quantidade > 0)
       setQuantidade(quantidade - 1);
+      alterarQuantidade(id, quantidade)
     if (quantidade < 1)
       setQuantidade(0);
   }
@@ -20,6 +34,7 @@ export function ItemListaCarrinho() {
   function atualizarQuantidade(e: ChangeEvent<HTMLInputElement>) {
     let value = Number(e.target.value)
     setQuantidade(value);
+    alterarQuantidade(id, value)
   }
 
   return (
@@ -27,15 +42,20 @@ export function ItemListaCarrinho() {
         <tr className="w-full h-40 flex items-center bg-transparent rounded-md">
           <td className="w-[50%] h-full flex items-center">
             <div className="w-[40%] p-6 flex items-center">
-              <img src={imageLista} alt="" className="w-[12rem] flex" />
+              <img src={produto.foto} alt="" className="w-[12rem] flex" />
             </div>
             <div className="flex flex-1 items-center">
-              <h1 className="w-full text-xl">Alface Brunela</h1>
+              <h1 className="w-full text-xl">{produto.nome}</h1>
             </div>
           </td>
 
           <div className="w-[50%] flex gap-4">
-            <td className="w-full flex justify-center">R$ 29,90</td>
+            <td className="w-full flex justify-center">
+              {Intl.NumberFormat(
+                'pt-BR', {
+                  style:'currency',
+                  currency: 'BRL'}
+                ).format(produto.preco)}</td>
 
             <td className="w-full flex justify-center">
               <div className='flex p-2 border border-emerald-400 rounded-lg'>
@@ -52,7 +72,13 @@ export function ItemListaCarrinho() {
               </div>
             </td>
 
-            <td className="w-full flex justify-center items-center gap-4">R$ 29,90 <Trash size={24} className="text-red-500" /></td>
+            <td className="w-full flex justify-center items-center gap-4">
+              {Intl.NumberFormat(
+                'pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'}
+                ).format(produto.preco * quantidade)}</td>
+            <Trash size={24} className="text-red-500" />
           </div>
         </tr>
       <hr  className="w-[95%]"/>

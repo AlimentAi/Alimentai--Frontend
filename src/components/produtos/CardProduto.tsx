@@ -8,6 +8,7 @@ import Produto from '../../models/Produto';
 import { atualizar } from '../../services/Service';
 import { toast } from 'react-toastify';
 import { toastAlerta } from '../../utils/toastAlerta';
+import { CartContext } from '../../contexts/CartContext';
 
 interface CardProdutoProps {
   produto: Produto;
@@ -17,6 +18,7 @@ interface CardProdutoProps {
 function CardProduto({ produto, editable }: CardProdutoProps) {
   const [quantidade, setQuantidade] = useState(0);
   const [favorito, setFavorito] = useState(false);
+  const {adicionarItem} = useContext(CartContext)
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -72,14 +74,14 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   }
 
   async function addToCart() {
-    const newProduto = {...produto, quantidade: produto.quantidade - quantidade}
-
     if (quantidade === 0) {
       toastAlerta('Você não pode adicionar algo vazio ao carrinho', 'info')
       return
     }
 
     toastAlerta(`${quantidade} ${produto.nome}s foi adicionado ao carrinho`, 'sucess')
+
+    adicionarItem(produto, quantidade)
   }
 
   function editarProduto() {
