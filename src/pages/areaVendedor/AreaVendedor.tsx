@@ -4,23 +4,22 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { SearchBar } from "../../components/searchBar/SearchBar";
 import { CardVendedor } from "./CardVendedor";
-
 import { buscar } from "../../services/Service";
+import Produto from "../../models/Produto";
+
 export function AreaVendedor() {
   const { usuario } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [produtosDoVendedor, setProdutosDoVendedor] = useState([]); 
+  const [produtos, setProdutos] = useState<Produto[]>([]); 
 
   useEffect(() => {
     async function fetchProdutosDoVendedor() {
       try {
-
-        const produtos = await buscar('/produtos', setProdutosDoVendedor, {
+        await buscar('/produtos', setProdutos, {
           headers: {
             Authorization: usuario.token,
           },
         });
-
       } catch (error) {
         console.error("Erro ao buscar os produtos do vendedor:", error);
         toast.error("Erro ao buscar os produtos do vendedor. Por favor, tente novamente.");
@@ -45,7 +44,9 @@ export function AreaVendedor() {
       </div>
       <SearchBar titulo="SEUS PRODUTOS" />
       <div className="grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 max-h-auto">
-        <CardVendedor produtos={produtosDoVendedor}/>
+        {produtos.filter(produto => produto.usuario.id === usuario.id).map((produto) => (
+          <CardVendedor key={produto.id} produto={produto} />
+        ))}
       </div>
     </div>
   );

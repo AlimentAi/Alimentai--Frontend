@@ -11,13 +11,12 @@ import { toastAlerta } from '../../utils/toastAlerta';
 
 interface CardProdutoProps {
   produto: Produto;
+  editable: boolean;
 }
 
-function CardProduto({ produto }: CardProdutoProps) {
+function CardProduto({ produto, editable }: CardProdutoProps) {
   const [quantidade, setQuantidade] = useState(0);
   const [favorito, setFavorito] = useState(false);
-  const { usuario } = useContext(AuthContext);
-  const userId = usuario.id;
 
   const navigate = useNavigate();
   let location = useLocation();
@@ -147,7 +146,7 @@ function CardProduto({ produto }: CardProdutoProps) {
         </div>
       </div>
       <div className="flex mx-3 mb-3">
-      {produto.usuario?.id === userId ?
+      {editable ?
         <button
           onClick={editarProduto}
           className="relative p-6 bg-[#4C5857] dark:bg-[#3C3837] hover:bg-[#2E3736] dark:hover:bg-[#2E3736] text-white text-lg font-semibold py-3 px-4 w-full rounded-lg duration-300">

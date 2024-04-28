@@ -131,7 +131,7 @@ function ListaProdutos() {
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {produtosFiltrados.map((produto) => (
-              <CardProduto key={produto.id} produto={produto} />
+              <CardProduto key={produto.id} produto={produto} editable={produto.usuario.id === usuario.id} />
             ))}
           </div>
         </div>
