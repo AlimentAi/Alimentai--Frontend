@@ -8,6 +8,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 export function Login() {
   let navigate = useNavigate()
 
+  const [caps, setCaps] = useState(false)
+
   const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
     {} as UsuarioLogin
   )
@@ -33,6 +35,16 @@ export function Login() {
     e.preventDefault()
     handleLogin(usuarioLogin)
   }
+
+  useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      if (event.getModifierState("CapsLock")) {
+        setCaps(true)
+      } else {
+        setCaps(false)
+      }
+    })
+  }, [caps])
 
   return (
     <div className="w-full h-screen flex">
@@ -63,6 +75,7 @@ export function Login() {
                 placeholder="Sua senha"
                 className="w-full border-b-2 p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
+              <p className={`${caps ? "block" : "hidden"} w-full font-bold text-start text-[#f76c6f]`}>Aviso: CapsLock está ativado!</p>
               <a href="" className="font-medium">Esqueceu sua senha?</a>
             </div>
             <button type="submit" className="w-[50%] h-14 bg-[#f76c6f] rounded-lg font-bold text-white hover:bg-[#c42342] duration-1000">

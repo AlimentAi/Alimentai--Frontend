@@ -20,6 +20,7 @@ import { AreaVendedor } from "./pages/areaVendedor/AreaVendedor"
 import { Carrinho } from "./pages/carrinho/Carrinho"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EditarUsuario from "./pages/editarUsuario/EditarUsuario"
 
 function App() {
   const {usuario} = useContext(AuthContext)
@@ -36,6 +37,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cadastrar' element={<Cadastrar />} />
+          <Route path='/editarUsuario' element={<EditarUsuario />} />
           <Route path='/sobre' element={<Sobre />} />
           <Route path='/contato' element={<Todo />} />
           <Route path='/favoritos' element={<FavoritosPage />} />

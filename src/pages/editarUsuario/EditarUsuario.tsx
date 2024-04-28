@@ -1,56 +1,65 @@
-import { Basket, CaretLeft, Carrot } from "@phosphor-icons/react";
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
+import { Link, useNavigate } from 'react-router-dom'
+import { toastAlerta } from '../../utils/toastAlerta'
+import { atualizar } from '../../services/Service'
+import Usuario from '../../models/Usuario'
+import { Basket, CaretLeft, Carrot } from '@phosphor-icons/react'
 import Logo from "../../assets/logo.png"
-import { Link, useNavigate } from "react-router-dom";
-import { ChangeEvent, useEffect, useState } from 'react';
-import Usuario from "../../models/Usuario";
-import { cadastrarUsuario } from "../../services/Service";
-import { toast } from "react-toastify";
 
-export function Cadastrar() {
+function EditarUsuario() {
+  const { usuario, handleLogout } = useContext(AuthContext)
   let navigate = useNavigate()
 
-  const [confirmarSenha, setConfirmarSenha] = useState("")
-  const [senhaValida, setSenhaValida] = useState(false)
-  const [checkTermos, setCheckTermos] = useState(false)
+  const [novoUsuario, setNovoUsuario] = useState({} as Usuario)
 
-  const [usuario, setUsuario] = useState<Usuario>({
-    id: 0,
-    nome: '',
-    email: '',
-    senha: '',
-    foto: '',
-    tipo: undefined,
-    produto: null
-  })
+  async function atualizarUsuario(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
 
-  const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
-    id: 0,
-    nome: '',
-    email: '',
-    senha: '',
-    foto: '',
-    tipo: undefined,
-    produto: null
-  })
-
-  useEffect(() => {
-    if (usuarioResposta.id !== 0) {
-      navigate('/login')
+    try {
+      await atualizar('/usuarios', novoUsuario, setNovoUsuario, {
+        headers: {
+          Authorization: usuario.token
+        }
+      })
+    } catch (error) {
+      toastAlerta('Falha ao atualizar usuário', 'error')
+      console.log(error)
     }
-  }, [usuarioResposta])
-
-  function handleConfirmarSenha(e: ChangeEvent<HTMLInputElement>) {
-    setConfirmarSenha(e.target.value)
   }
 
-  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-    setUsuario({
-      ...usuario,
+  function atualizarEstado(e: React.ChangeEvent<HTMLInputElement>) {
+    setNovoUsuario({
+      ...novoUsuario,
       [e.target.name]: e.target.value
     })
   }
 
-  function atualizarRequisitos(e: ChangeEvent<HTMLInputElement>) {
+  useEffect(() => {
+    if (usuario.token === '') {
+      toastAlerta('Sessão expirada ou inválida. Faça o login novamente ou registre uma conta', 'error')
+      handleLogout
+      navigate("/")
+    }
+  }, [usuario])
+
+  function mostrarRequisitos() {
+    const lista = document.querySelector("#requisitos-lista")
+
+    lista?.classList.remove("hidden")
+    lista?.classList.add("block")
+  }
+
+  function ocultarRequisitos() {
+    const lista = document.querySelector("#requisitos-lista")
+
+    if (usuario.senha.length === 0) {
+      lista?.classList.remove("block")
+      lista?.classList.add("hidden")
+    }
+  }
+
+  function atualizarRequisitos(e: React.ChangeEvent<HTMLInputElement>): void {
     atualizarEstado(e)
     const value = e.target.value
 
@@ -129,113 +138,21 @@ export function Cadastrar() {
     }
   }
 
-  function mostrarRequisitos() {
-    const lista = document.querySelector("#requisitos-lista")
-
-    lista?.classList.remove("hidden")
-    lista?.classList.add("block")
-  }
-
-  function ocultarRequisitos() {
-    const lista = document.querySelector("#requisitos-lista")
-    
-    if (usuario.senha.length === 0) {
-      lista?.classList.remove("block")
-      lista?.classList.add("hidden")
-    }
-  }
-
-  function toggleTermos() {
-    setCheckTermos(!checkTermos)
-  }
-
-  async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    if (confirmarSenha === usuario.senha &&
-      senhaValida &&
-      checkTermos &&
-      (usuario.tipo === 'consumidor' || usuario.tipo === 'produtor')) {
-      
-      try {
-        await cadastrarUsuario(usuario, setUsuarioResposta)
-        const mensagemSucesso = (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="font-semibold">Usuário cadastrado com sucesso</span>
-            <img src="https://i.imgur.com/9LUfmKX.png" alt="Usuário Cadastrado com Sucesso" style={{ width: '100px', height: '100px', marginTop: '8px' }} />
-          </div>
-        );
-        toast.success(mensagemSucesso);
-      } catch (error) {
-        const mensagemErro = (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="font-semibold">Erro ao cadastrar o Usuário</span>
-            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Erro ao Cadastrar Usuário" style={{ width: '100px', height: '100px', marginTop: '5px' }} />
-          </div>
-        );
-        toast.error(mensagemErro);
-        console.log(error)
-      }
-    }
-    
-    switch (false) {
-      case confirmarSenha === usuario.senha:
-        const mensagemSenhaInconsistente = (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="font-semibold">Dados inconsistentes, as senhas precisam ser iguais.</span>
-            <img src="https://i.imgur.com/aAwsVDm.png" alt="Dados Inconsistentes" style={{ width: '100px', height: '100px', marginTop: '2px' }} />
-          </div>
-        );
-        toast.info(mensagemSenhaInconsistente);
-        setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
-        setConfirmarSenha("")                 // Reinicia o campo de Confirmar Senha
-        break
-      case senhaValida:
-        const mensagemSenhaFraca = (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="font-semibold">A senha não atende aos requisitos mínimos.</span>
-            <img src="https://i.imgur.com/F1Yn7v3.png" alt="Senha Fraca" style={{ width: '100px', height: '100px', marginTop: '5px' }} />
-          </div>
-        );
-        toast.info(mensagemSenhaFraca);
-        break
-      case usuario.tipo === 'consumidor' || usuario.tipo === 'produtor':
-        toast.info('Informe se você é um consumidor ou produtor')
-        break
-      case checkTermos:
-        const mensagemTermosNaoAceitos = (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="font-semibold">Você precisa aceitar os termos de uso.</span>
-            <img src="https://i.imgur.com/hjK8SOV.png" alt="Termos de Uso Não Aceitos" style={{ width: '100px', height: '100px', marginTop: '2px' }} />
-          </div>
-        );
-        toast.info(mensagemTermosNaoAceitos);
-        break
-    }
+  function handleConfirmarSenha(e: React.ChangeEvent<HTMLInputElement>): void {
+    throw new Error('Function not implemented.')
   }
 
   return (
-    <div className="w-full flex">
-      <div className="w-[50%] h-full">
-        <div className="w-[50%] h-full bg-image-cadastrar bg-no-repeat bg-cover bg-center fixed"></div>
+    <div className="w-full flex flex-col pt-8 pb-16">
+      <div className="justify-center flex items-center">
+        <h1 className="text-3xl font-bold">ATUALIZAR DADOS</h1>
+        <img src={Logo} className="w-14" alt="" />
       </div>
-      <div className="w-[50%] h-full flex flex-col items-start p-4">
-        <Link to='/' className="w-28 z-50">
-          <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
-            <CaretLeft size={40} />
-            <span className="">Voltar</span>
-          </button>
-        </Link>
-
-        <form className="w-full flex flex-wrap justify-center items-center gap-4 pb-16 pt-8" onSubmit={cadastrarNovoUsuario}>
+      <p className="m-4 font-bold">Crie sua vitrine online e ganhe visibilidade de milhares de clientes</p>
+      <div className="h-full flex flex-col items-start p-4">
+        <form className="w-full flex flex-wrap justify-center items-center gap-4" onSubmit={atualizarUsuario}>
           <div className="w-[80%] flex flex-col justify-center items-center gap-4">
-            <div className="w-[90%] justify-center flex items-center">
-              <h1 className="text-3xl font-bold">CADASTRE-SE</h1>
-              <img src={Logo} className="w-14" alt="" />
-            </div>
-
             <div className="w-[90%] flex flex-col items-start gap-4">
-              <p className="m-4 font-bold">Crie sua vitrine online e ganhe visibilidade de milhares de clientes</p>
               <h2 className="text-2xl font-semibold">Dados de contato</h2>
               <input type="text"
                 className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
@@ -278,8 +195,8 @@ export function Cadastrar() {
                 <li id="tem-numero">Um número</li>
                 <li id="sem-espaco">Não pode conter espaços.</li>
               </ul>
-              <div className="flex w-full justify-around flex-wrap">
-                <div className={`${usuario.tipo === 'consumidor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>
+              <div className="flex w-full justify-around flex-wrap my-4">
+                <div className={`${novoUsuario.tipo === 'consumidor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>
                   <input
                     id="consumidor"
                     type="radio"
@@ -296,7 +213,7 @@ export function Cadastrar() {
                     Sou consumidor
                   </label>
                 </div>
-                <div className={`${usuario.tipo === 'produtor' ? 'text-orange-600 dark:text-orange-400' : ''} duration-300`}>
+                <div className={`${novoUsuario.tipo === 'produtor' ? 'text-orange-600 dark:text-orange-400' : ''} duration-300`}>
                   <input
                     id="produtor"
                     type="radio"
@@ -316,13 +233,14 @@ export function Cadastrar() {
               </div>
             </div>
 
-            <div className="w-[90%] flex flex-col items-center gap-4">
-              <div>
-                <input id="aceitar-termos" type="checkbox" checked={checkTermos} onClick={toggleTermos}/> Aceito as <a href="" target="_blank" className="underline">condições de uso</a> e a <a href="" target="_blank" className="underline">política de privacidade</a>
-              </div>
-
-              <button type='submit' className="w-[50%] h-14 bg-[#f76c6f] rounded-lg font-bold text-white hover:bg-[#c42342] duration-1000">Crie a sua conta</button>
-              <p className="w-[90%]">Já possui cadastro? <Link to='/login' className="text-[#d68bac]">Clique aqui!</Link></p>
+            <div className="w-[90%] mt-4 flex items-center justify-center gap-4">
+              <Link to='/'>
+                <button className="w-full pr-4 h-14 flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
+                  <CaretLeft size={40} />
+                  <span className="">Cancelar</span>
+                </button>
+              </Link>
+              <button type='submit' className="w-[50%] h-14 bg-[#f76c6f] rounded-lg font-bold text-white hover:bg-[#c42342] duration-1000">Atualizar dados</button>
             </div>
           </div>
         </form>
@@ -330,3 +248,5 @@ export function Cadastrar() {
     </div>
   )
 }
+
+export default EditarUsuario

@@ -102,17 +102,15 @@ export function NavBar() {
   }, [endpoint, usuario.token]);
 
   function toggleMenu() {
-    const userMenu = document.querySelector("#user-menu");
-    setShowMenu(!showMenu);
-
-    if (showMenu) {
-      userMenu?.classList.remove("invisible");
-      userMenu?.classList.add("visible");
-    } else {
-      userMenu?.classList.remove("visible");
-      userMenu?.classList.add("invisible");
-    }
+    setShowMenu(!showMenu)
   }
+
+  //useEffect(() => {
+  //  document.body.addEventListener("mousedown", toggleMenu)
+  //  return () => {
+  //      document.body.removeEventListener("mousedown", toggleMenu);
+  //  };
+  //}, [showMenu])
 
   return (
     <>
@@ -153,24 +151,31 @@ export function NavBar() {
               </li>
             }
             {usuario.token !== '' && (usuario.tipo === 'consumidor' || usuario.tipo === undefined) &&
-            <li >
-              <Link id='carrinho' to='/carrinho' className='hover:text-[#c42342] duration-500 p-4 flex gap-2 items-center'>
-                <ShoppingCartSimple className="w-8 h-8 flex text-[#629d60] bg-[#e4f6e3] rounded-full p-2" size={24}/>
-                <span className="text-start text-sm font-medium">Meu Carrinho</span>
-              </Link>
-            </li>}
+              <li >
+                <Link id='carrinho' to='/carrinho' className='hover:text-[#c42342] duration-500 p-4 flex gap-2 items-center'>
+                  <ShoppingCartSimple className="w-8 h-8 flex text-[#629d60] bg-[#e4f6e3] rounded-full p-2" size={24} />
+                  <span className="text-start text-sm font-medium">Meu Carrinho</span>
+                </Link>
+              </li>}
             {usuario.token !== "" && (
-              <li onClick={toggleMenu} className="max-h-10 max-w-10 overflow-hidden rounded-full border border-black hover:text-[#c42342] dark:border-white hover:border-[#c42342] dark:hover:border-[#c42342] duration-300">
+              <li id="user-image" onClick={toggleMenu} className="max-h-10 max-w-10 overflow-hidden rounded-full border border-black hover:text-[#c42342] dark:border-white hover:border-[#c42342] dark:hover:border-[#c42342] duration-300">
                 {usuario.foto === " " || usuario.foto === "" || usuario.foto === null ?
                   <User size={32} className="h-full w-auto" /> :
                   <img src={usuario.foto} alt="Menu do usuário" className="w-auto max-h-full" />
                 }
-                <ul id="user-menu" className="z-50 invisible absolute right-0 mt-4 mr-4 flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300">
-                  <li><Link to="/editarUsuario" className="hover:text-[#c42342] duration-500 my-4 p-4">Configurações</Link></li>
-                  <li><Link to="/" className="hover:text-[#c42342] duration-500 m-4 py-4" onClick={handleLogout}>Sair</Link></li>
-                </ul>
               </li>
             )}
+            {showMenu && <div onClick={toggleMenu} className="z-40 absolute top-0 bottom-0 left-0 right-0 w-full h-full"/>}
+            <div onClick={toggleMenu} className={`${showMenu ? "opacity-100" : "opacity-0"} duration-300`}>
+              <div id="user-menu" className={`z-50 absolute right-4 top-20 p-2 flex flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300`}>
+                <Link to="/editarUsuario" className="hover:text-[#c42342] duration-500 p-2 w-full">
+                  Configurações
+                </Link>
+                <Link to="/" className="hover:text-[#c42342] duration-500 p-2 w-full" onClick={handleLogout}>
+                  Sair
+                </Link>
+              </div>
+            </div>
             {usuario.token === "" &&
               <li><Link id="logar" to="/login" className="hover:text-[#c42342] duration-500 p-4">Login</Link></li>
             }
