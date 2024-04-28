@@ -1,3 +1,4 @@
+// Arquivo: CardProduto.tsx
 import React, { useContext, useState, useEffect, ChangeEvent } from 'react';
 import { Heart, ShoppingCart, PencilSimpleLine, ImageBroken, Minus, Plus, Trash } from '@phosphor-icons/react';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -100,8 +101,8 @@ function CardProduto({ produto }: CardProdutoProps) {
     navigate(`/editarProduto/${produto.id}`)
   }
   
-  return (
-    <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-64'>
+  return ( 
+    <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-80'>
          {location.pathname === '/favoritos' ?
         <Trash
           size={40}
