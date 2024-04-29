@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL
+    baseURL: 'https://generation-pi-ecommerce.onrender.com'
     //baseURL: 'http://localhost:8080/' //Rota para restes locais
 })
 
