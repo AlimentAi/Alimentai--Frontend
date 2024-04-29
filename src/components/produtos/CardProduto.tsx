@@ -87,6 +87,8 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   function editarProduto() {
     navigate(`/editarProduto/${produto.id}`)
   }
+
+  //Testing 
   
   return ( 
     
