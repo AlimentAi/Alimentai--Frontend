@@ -1,5 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: 'class',
   content: [
     "./index.html",
@@ -11,10 +10,13 @@ export default {
       backgroundImage: {
         'image-login': "url('/src/assets/image-login.png')",
         'image-cadastrar': "url('/src/assets/image-cadastrar.png')",
-        'icon-voltar': "url('/src/assets/button-voltar.png')"
-      }
+        'icon-voltar': "url('/src/assets/button-voltar.png')",
+        'wallpaper': "url('/src/assets/wallpaperalimentai.png')"
+      },
+      backgroundOpacity: {
+        '50': '0.5',
+      },
     },
   },
   plugins: [],
 }
-

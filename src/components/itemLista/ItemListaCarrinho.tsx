@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import { Minus, Plus, Trash } from "@phosphor-icons/react"
 import { ChangeEvent, useContext, useState } from "react"
 import imageLista from "../../assets/alface-fresca.jpg"
@@ -13,7 +12,7 @@ interface ItemListaCarrinhoProps {
 
 export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCarrinhoProps) {
   const [quantidade, setQuantidade] = useState(quantidadeDesejada);
-  const {alterarQuantidade} = useContext(CartContext)
+  const { alterarQuantidade, removerItem } = useContext(CartContext)
 
   function incrementItem() {
     if (quantidade < produto.quantidade)
@@ -77,8 +76,14 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
                 'pt-BR', {
                   style: 'currency',
                   currency: 'BRL'}
-                ).format(produto.preco * quantidade)}</td>
-            <Trash size={24} className="text-red-500" />
+                ).format(produto.preco * quantidade)}
+            </td>
+
+            <td className="w-full flex justify-center items-center gap-4">
+              <button onClick={() => removerItem(id)} className="text-red-500">
+                <Trash size={24} />
+              </button>
+            </td>
           </div>
         </tr>
       <hr  className="w-[95%]"/>

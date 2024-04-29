@@ -89,6 +89,7 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   }
   
   return ( 
+    
     <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-80'>
          {location.pathname === '/favoritos' ?
         <Trash
