@@ -11,7 +11,15 @@ function Home() {
   return (
     <>
       <div className='flex justify-center border-b-4 border-neutral-200 relative py-5'>
-        <Carousel transition={{ duration: 2 }} className="rounded-xl w-full h-96 max-w-5xl mx-4" autoplay={true} loop={true} >
+        <Carousel
+          transition={{ duration: 2 }}
+          className="rounded-xl w-full h-96 max-w-5xl mx-4"
+          autoplay={true}
+          loop={true}
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        >
           <img
             src={foto1}
             alt="image 1"

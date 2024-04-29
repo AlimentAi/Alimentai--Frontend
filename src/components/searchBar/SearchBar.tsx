@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 interface PropsSearchBar {
   titulo: string;
   handleFiltrarProdutos: (filtro: string) => void;
-  usuarioTipo: string;
-  mostrarCarrinhoIcon: boolean;
+  usuarioTipo?: string;
+  mostrarCarrinhoIcon?: boolean;
 }
+
 
 export function SearchBar(props: PropsSearchBar) {
   const [filtroProduto, setFiltroProduto] = useState<string>("");
