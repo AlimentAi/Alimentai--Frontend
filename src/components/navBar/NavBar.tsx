@@ -171,7 +171,7 @@ export function NavBar() {
             )}
             {showMenu && <div onClick={toggleMenu} className="z-40 absolute top-0 bottom-0 left-0 right-0 w-full h-full"/>}
             <div onClick={toggleMenu} className={`${showMenu ? "opacity-100" : "opacity-0"} duration-300`}>
-              <div id="user-menu" className={`${showMenu ? "top-20" : "-top-40"} z-50 absolute right-4 top-20 p-2 flex flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300`}>
+              <div id="user-menu" className={`${showMenu ? "top-20" : "-top-40"} z-50 absolute right-4 p-2 flex flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300`}>
                 {(usuario.tipo === "produtor" || usuario.tipo === "administrador") &&
                   <Link to="/carrinho" className="hover:text-[#c42342] duration-500 p-2 w-full">
                     <div className="flex gap-2"><ShoppingCart size={32} /> Meu Carrinho</div>
