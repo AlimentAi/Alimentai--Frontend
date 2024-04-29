@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 interface PropsSearchBar {
   titulo: string;
   handleFiltrarProdutos: (filtro: string) => void;
+  usuarioTipo: string;
+  mostrarCarrinhoIcon: boolean;
 }
 
 export function SearchBar(props: PropsSearchBar) {
@@ -30,14 +32,16 @@ export function SearchBar(props: PropsSearchBar) {
           />
         </div>
       </div>
-      <Link to='/cadastrarProduto'>
-        <button
-          className={`p-3 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
-          style={{ fontSize: '15px' }}
-        >
-          Cadastrar novo Produto
-        </button>
-      </Link>
+      {(props.usuarioTipo === "produtor" || props.usuarioTipo === "administrador") && (
+        <Link to='/cadastrarProduto'>
+          <button
+            className={`p-3 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+            style={{ fontSize: '15px' }}
+          >
+            Cadastrar novo Produto
+          </button>
+        </Link>
+      )}
     </div>
   );
 }

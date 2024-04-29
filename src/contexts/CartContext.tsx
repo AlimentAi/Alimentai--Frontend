@@ -30,18 +30,15 @@ export function CartProvider({ children }: CartProviderProps) {
   const [percentual, setPercentual] = useState(0);
 
   useEffect(() => {
-    // Calcula o valor total inicial quando o componente é montado
     let total = 0;
     carrinho.forEach((item) => {
       total += item.quantidadeDesejada * item.produto.preco;
     });
     setValorTotal(total);
 
-    // Calcula o valor restante para o frete grátis
     const novoValorRestante = total < 99 ? 99 - total : 0;
     setValorRestante(novoValorRestante);
 
-    // Calcula o percentual
     const novoPercentual = (total / 99) * 100;
     setPercentual(novoPercentual > 100 ? 100 : novoPercentual);
   }, [carrinho]);
@@ -63,16 +60,13 @@ export function CartProvider({ children }: CartProviderProps) {
     const novoCarrinho = carrinho.filter((item) => item.id !== id);
     setCarrinho(novoCarrinho);
 
-    // Recalcula o valor total excluindo o valor do item removido
     const novoValorTotal =
       valorTotal - itemRemovido.produto.preco * itemRemovido.quantidadeDesejada;
     setValorTotal(novoValorTotal);
 
-    // Recalcula o valor restante para o frete grátis
     const novoValorRestante = novoValorTotal < 99 ? 99 - novoValorTotal : 0;
     setValorRestante(novoValorRestante);
 
-    // Recalcula o percentual
     const novoPercentual = (novoValorTotal / 99) * 100;
     setPercentual(novoPercentual > 100 ? 100 : novoPercentual);
   }
