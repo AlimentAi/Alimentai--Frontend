@@ -12,7 +12,7 @@ import { CartContext } from '../../contexts/CartContext';
 
 interface CardProdutoProps {
   produto: Produto;
-  editable: boolean;
+  editable?: boolean;
 }
 
 function CardProduto({ produto, editable }: CardProdutoProps) {
@@ -87,6 +87,8 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   function editarProduto() {
     navigate(`/editarProduto/${produto.id}`)
   }
+
+  //Testing 
   
   return ( 
     
