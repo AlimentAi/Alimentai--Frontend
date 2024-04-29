@@ -37,6 +37,7 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
   }
 
   return (
+    
     <div className="flex flex-col items-center">
         <tr className="w-full h-40 flex items-center bg-transparent rounded-md">
           <td className="w-[50%] h-full flex items-center">
