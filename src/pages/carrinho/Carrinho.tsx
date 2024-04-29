@@ -90,7 +90,7 @@ export function Carrinho() {
           <div className="flex items-center justify-center">
   <button
     disabled={!podeFinalizarCompra}
-    className={`mt-4 h-12 px-8 border rounded-lg text-2xl font-bold ${!podeFinalizarCompra ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 text-white"}`}
+    className={`flex mt-4 h-12 px-8 border rounded-lg text-2xl font-bold ${!podeFinalizarCompra ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 text-white"}`}
   >
     Finalizar Compra
   </button>

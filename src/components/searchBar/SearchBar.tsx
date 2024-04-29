@@ -19,16 +19,16 @@ export function SearchBar(props: PropsSearchBar) {
   };
 
   return (
-<div className={'bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm py-3 px-10 mb-10 flex items-center rounded-full'}>
-      <div className="flex items-center">
+<div className={'w-[90%] bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm p-4 mb-10 flex items-center rounded-full'}>
+      <div className="w-full flex items-center justify-between">
         <span className='font-normal text-3xl'>{props.titulo}</span>
-        <div className="ml-20 flex relative">
+        <div className="flex relative">
           <input
             type="text"
             placeholder="Pesquisar por produto"
             value={filtroProduto}
             onChange={handleInputChange}
-            className='border-slate-800 rounded bg-white dark:bg-[#212b24] px-3 py-1 duration-300'
+            className='border-slate-800 rounded-full bg-white dark:bg-[#212b24] p-2 duration-300'
             style={{ width: '400px' }}
           />
         </div>
