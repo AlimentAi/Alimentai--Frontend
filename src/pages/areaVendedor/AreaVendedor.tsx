@@ -43,15 +43,17 @@ export function AreaVendedor() {
   const produtosFiltrados = produtos.filter(produto => produto.usuario.id === usuario.id && produto.nome.toLowerCase().includes(filtroProduto.toLowerCase()));
 
   return (
-    <div className="w-full flex flex-col items-center gap-8 p-8">
-      <div className="w-[70%] flex items-center justify-between pr-2 pl-2 font-bold">
+    <div className="flex justify-center w-full px-20 bg-wallpaper bg-repeat bg-center">
+    <div className="w-full flex flex-col items-center">
+      <div className="w-[70%] flex items-center justify-between pr-2 pl-2 font-bold my-10">
       </div>
       <SearchBar titulo="ÁREA DO VENDEDOR" handleFiltrarProdutos={handleFiltrarProdutos} />
-      <div>
+      <div className="my-20">
         {produtosFiltrados.map((produto) => (
           <CardVendedor key={produto.id} produto={produto} />
         ))}
       </div>
+    </div>
     </div>
   );
 }
