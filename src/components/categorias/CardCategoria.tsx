@@ -8,8 +8,8 @@ interface CardCategoriaProps {
 
 function CardCategoria({ categoria }: CardCategoriaProps) {
   return (
-    <div className='border m-4 flex flex-col rounded-2xl overflow-hidden shadow-md bg-white dark:bg-neutral-900 duration-300'>
-      <p className='p-2 pb-2 text-3xl font-bold text-white bg-[#95507E] dark:bg-[#5a314d] duration-300'>{categoria.nome}</p>
+    <div className='border m-4 flex flex-col rounded-2xl overflow-hidden shadow-md bg-white bg-opacity-15 dark:bg-gray-600 dark:bg-opacity-15 backdrop-blur-sm'>
+      <p className='p-2 pb-2 text-3xl font-bold text-white bg-black bg-opacity-35 dark:bg-black-400 bg-opacity-35 duration-300'>{categoria.nome}</p>
       <p className='p-5 text-2xl font-semibold h-full'>{categoria.descricao}</p>
 
       <div className="flex">
