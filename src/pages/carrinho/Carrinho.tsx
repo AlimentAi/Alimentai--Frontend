@@ -23,6 +23,8 @@ export function Carrinho() {
     setFiltroProduto(filtro);
   };
 
+
+  //Testing
   return (
     <div className="w-full flex flex-col items-center justify-center gap-2 pt-20 p-8">
       <SearchBar titulo="Meu Carrinho" handleFiltrarProdutos={filtrarProdutos} />
