@@ -96,23 +96,24 @@ function ListaProdutos() {
               visible={true}
               colors={['#be0343', '#be0343', '#be0343', '#be0343', '#be0343', 'green']}
             />
-          <p>Parece que nenhum produto foi postado ainda.</p>
-          <p>Aguarde até que um vendedor poste algo.</p>
+            <p>Parece que nenhum produto foi postado ainda.</p>
+            <p>Aguarde até que um vendedor poste algo.</p>
           </div>
         </>
       )}
-      <div className="flex justify-center w-full px-20 my-10">
+<div className="flex justify-center w-full px-20 bg-wallpaper bg-repeat bg-center">
         <div className="container flex flex-col flex-container items-center">
           {produtos.length !== 0 && (
             <>
-              <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full">
+<div className={'my-10 bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm py-3 px-10 mb-10 flex items-center rounded-full'}>
                 <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>PRODUTOS</span>
                 <select
                   name="categoria"
                   id="categoria"
                   value={categoriaSelecionada}
                   onChange={handleSelecionarCategoria}
-                  className='border-slate-800 rounded bg-transparent ml-4 mr-8'                >
+                  className='border-slate-800 rounded bg-transparent ml-4 mr-8'
+                >
                   <option value="">Todas as categorias</option>
                   {categorias.map((categoria) => (
                     <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
