@@ -216,10 +216,10 @@ export function Cadastrar() {
 
   return (
     <div className="w-full flex">
-      <div className="w-[50%] h-full">
+      <div className="w-full h-full hidden md:block">
         <div className="w-[50%] h-full bg-image-cadastrar bg-no-repeat bg-cover bg-center fixed"></div>
       </div>
-      <div className="w-[50%] h-full flex flex-col items-start p-4">
+      <div className="w-full h-full flex flex-col items-start p-4">
         <Link to='/' className="w-28 z-50">
           <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
             <CaretLeft size={40} />
@@ -277,6 +277,7 @@ export function Cadastrar() {
                 <li id="tem-letra-minuscula">uma letra maiúscula</li>
                 <li id="tem-numero">Um número</li>
                 <li id="sem-espaco">Não pode conter espaços.</li>
+                <li id="senhas-iguais">As senhas precisam ser iguais</li>
               </ul>
               <div className="flex w-full justify-around flex-wrap">
                 <div className={`${usuario.tipo === 'consumidor' ? 'text-green-600 dark:text-green-400' : ''} duration-300`}>

@@ -48,17 +48,17 @@ export function Login() {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="w-[50%] h-full">
+      <div className="w-full h-full hidden md:block">
         <div className="w-[50%] h-full bg-image-login bg-no-repeat bg-cover bg-center fixed"></div>
       </div>
-      <div className="w-[50%] h-full flex flex-col justify-center items-start p-4">
+      <div className="w-full h-full flex flex-col justify-center items-start p-4">
         <Link to='/' className="w-28 z-50">
           <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
             <CaretLeft size={40} />
             <span className="">Voltar</span>
           </button>
         </Link>
-        <form className="w-full h-[100%] flex flex-col justify-center items-start gap-4" onSubmit={login}>
+        <form className="w-full h-[100%] flex flex-col justify-center items-center md:items-start gap-4" onSubmit={login}>
           <div className="w-full flex flex-col justify-center items-center gap-4">
             <img src={Logo} className="w-20" alt="" />
             <h1 className="text-3xl font-semibold">Login</h1>
@@ -76,6 +76,7 @@ export function Login() {
                 id="senha"
                 placeholder="Sua senha"
                 className="w-full border-b-2 p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
               <p className={`${caps ? "block" : "hidden"} w-full font-bold text-start text-[#f76c6f]`}>Aviso: CapsLock está ativado!</p>
               <a href="" className="font-medium">Esqueceu sua senha?</a>

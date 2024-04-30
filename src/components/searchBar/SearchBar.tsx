@@ -32,7 +32,6 @@ export function SearchBar(props: PropsSearchBar) {
             style={{ width: '400px' }}
           />
         </div>
-      </div>
       {(props.usuarioTipo === "produtor" || props.usuarioTipo === "administrador") && (
         <Link to='/cadastrarProduto'>
           <button
