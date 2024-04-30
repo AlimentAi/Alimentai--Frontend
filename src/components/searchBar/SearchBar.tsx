@@ -19,20 +19,17 @@ export function SearchBar(props: PropsSearchBar) {
   };
 
   return (
-<div className={'bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm py-3 px-10 mb-10 flex items-center rounded-full'}>
-      <div className="flex items-center">
-        <span className='font-normal text-3xl'>{props.titulo}</span>
-        <div className="ml-20 flex relative">
+    <div className={'bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 py-3 px-10 mb-10 flex flex-col md:flex-row w-[90%] items-center rounded-full'}>
+        <span className='font-normal w-full text-3xl'>{props.titulo}</span>
+        <div className="mx-4 w-full flex relative">
           <input
             type="text"
             placeholder="Pesquisar por produto"
             value={filtroProduto}
             onChange={handleInputChange}
-            className='border-slate-800 rounded bg-white dark:bg-[#212b24] px-3 py-1 duration-300'
-            style={{ width: '400px' }}
+            className='border-slate-800 rounded bg-white dark:bg-[#212b24] px-3 py-1 w-full duration-300'
           />
         </div>
-      </div>
       {(props.usuarioTipo === "produtor" || props.usuarioTipo === "administrador") && (
         <Link to='/cadastrarProduto'>
           <button

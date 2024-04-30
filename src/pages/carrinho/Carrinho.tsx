@@ -28,7 +28,7 @@ export function Carrinho() {
   return (
     <div className="w-full flex flex-col items-center justify-center gap-2 pt-20 p-8">
       <SearchBar titulo="Meu Carrinho" handleFiltrarProdutos={filtrarProdutos} />
-      <div className="w-[90%] flex gap-12">
+      <div className="w-[90%] flex flex-col md:flex-row gap-12">
         <table className="w-full flex flex-col border-[1px] rounded-md">
           <thead className="w-full flex items-center justify-between border-b-[1px]">
             <tr className="w-full h-16 flex items-center justify-between bg-transparent text-[#54412f]">
@@ -82,19 +82,17 @@ export function Carrinho() {
           <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
             <div className="w-[16%] bg-emerald-400 h-2.5 rounded-full" style={{ width: `${percentual}%` }}></div>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="w-28 text-sm text-start font-semibold text-[#607571]">{valorTotal}</span>
-            <span className="w-28 text-sm text-end font-semibold text-[#607571]">R$ 99,00</span>
+          <div className="flex w-full items-center justify-between">
+            <span className="text-sm text-start font-semibold text-[#607571]">{valorTotal}</span>
+            <span className="text-sm text-end font-semibold text-[#607571]">R$ 99,00</span>
           </div>
           <hr className="w-full" />
-          <div className="flex items-center justify-center">
-  <button
-    disabled={!podeFinalizarCompra}
-    className={`mt-4 h-12 px-8 border rounded-lg text-2xl font-bold ${!podeFinalizarCompra ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 text-white"}`}
-  >
-    Finalizar Compra
-  </button>
-</div>
+          <button
+            disabled={!podeFinalizarCompra}
+            className={`mt-4 w-full h-12 px-8 border rounded-lg text-2xl font-bold ${!podeFinalizarCompra ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 text-white"}`}
+          >
+            Finalizar Compra
+          </button>
 
         </div>
       </div>
