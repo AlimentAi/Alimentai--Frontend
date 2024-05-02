@@ -101,32 +101,33 @@ function ListaProdutos() {
           </div>
         </>
       )}
-<div className="flex justify-center w-full px-20 bg-wallpaper bg-repeat bg-center">
-        <div className="container flex flex-col flex-container items-center">
+      <div className="container justify-center mx-auto px-20 bg-wallpaper bg-repeat bg-center">
+        <div className="">
           {produtos.length !== 0 && (
             <>
-<div className={'my-10 bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm py-3 px-10 mb-10 flex items-center rounded-full'}>
-                <span className='font-bold mr-4 ' style={{ fontSize: '40px' }}>PRODUTOS</span>
-                <select
-                  name="categoria"
-                  id="categoria"
-                  value={categoriaSelecionada}
-                  onChange={handleSelecionarCategoria}
-                  className='border-slate-800 rounded bg-transparent ml-4 mr-8'
-                >
-                  <option value="">Todas as categorias</option>
-                  {categorias.map((categoria) => (
-                    <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
-                  ))}
-                </select>
-                <input
-                  type="text"
-                  placeholder="Pesquisar por produto"
-                  value={filtroProduto}
-                  onChange={handleFiltrarProdutos}
-                  className='border-slate-800 rounded bg-white dark:bg-[#212b24] ml-auto px-3 py-1 ml-200 duration-300'
-                  style={{ marginRight: '20px', width: '400px' }}
-                />
+              <div className={'my-10 bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 py-3 px-10 mb-10 flex flex-col md:flex-row items-center rounded-full gap-4'}>
+                <span className='font-bold text-4xl'>PRODUTOS</span>
+                <div className='flex'>
+                  <select
+                    name="categoria"
+                    id="categoria"
+                    value={categoriaSelecionada}
+                    onChange={handleSelecionarCategoria}
+                    className='border-slate-800 rounded bg-transparent mx-4'
+                  >
+                    <option value="">Todas as categorias</option>
+                    {categorias.map((categoria) => (
+                      <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
+                    ))}
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Pesquisar por produto"
+                    value={filtroProduto}
+                    onChange={handleFiltrarProdutos}
+                    className='border-slate-800 rounded bg-white dark:bg-[#212b24] hidden md:block mx-auto px-3 py-1 duration-300'
+                  />
+                </div>
                 {(usuario.tipo === "produtor" || usuario.tipo === "administrador") && cadastrarProduto}
               </div>
             </>
