@@ -118,7 +118,7 @@ export function NavBar() {
 
   return (
     <>
-      <header id="navbar" className="flex justify-center w-full h-20 shadow-lg">
+      <header id="navbar" className="flex z-50 justify-center w-full h-20 shadow-lg">
         <nav className="w-full h-full flex items-center justify-between px-8">
           <Link id="navbar-logo" to="/">
             <div className="flex items-center gap-1">
@@ -170,7 +170,7 @@ export function NavBar() {
               </li>
             )}
             {showMenu && <div onClick={toggleMenu} className="z-40 absolute top-0 bottom-0 left-0 right-0 w-full h-full"/>}
-            <div onClick={toggleMenu} className={`${showMenu ? "opacity-100" : "opacity-0"} duration-300`}>
+            <div onClick={toggleMenu} className={`${showMenu ? "opacity-100" : "opacity-0"} z-50 duration-300`}>
               <div id="user-menu" className={`${showMenu ? "top-20" : "-top-[400px]"} z-50 absolute right-4 p-2 flex flex-col items-center rounded-2xl border bg-white dark:bg-neutral-900 overflow-hidden duration-300`}>
                 <Link id='home' to='/home' className='md:hidden hover:text-[#c42342] duration-500 p-2 w-full'>
                   <div className="flex gap-2"><House size={32}/>Home</div>
