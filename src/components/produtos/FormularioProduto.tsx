@@ -229,9 +229,6 @@ export function FormularioProduto() {
           </button>
         </form>
       </div>
-      <div>
-        <p>Criar card de preview</p>
-      </div>
     </div>
   );
 }

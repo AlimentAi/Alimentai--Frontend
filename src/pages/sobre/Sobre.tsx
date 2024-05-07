@@ -5,7 +5,7 @@ function Sobre() {
     <div>
       <div className='top-8 relative'><h1 className='text-3xl'> Sobre o ALIMENTAi </h1></div>
 
-      <div className='flex flex-col flex-center mx-[20%] my-10 m-auto min-h-[62vh] text-justify top-4 relative gap-4'>
+      <div className='flex flex-col flex-center mx-[10%] my-10 m-auto min-h-[62vh] text-justify top-4 relative gap-4'>
         <p className='text-1xl'>Bem-vindo à nossa plataforma dedicada a conectar pequenos produtores e agricultores com consumidores conscientes, apaixonados por produtos frescos e de qualidade. Aqui na nossa comunidade, valorizamos não apenas os alimentos que você compra, mas também as histórias por trás deles - histórias de trabalho árduo, dedicação à terra e um compromisso com práticas sustentáveis.</p>
 
         <p className='text-1xl'> Nosso propósito é criar uma ponte entre os que cultivam e os que consomem, promovendo uma conexão genuína e transparente. Acreditamos que cada produto tem uma história única, e é essa narrativa que queremos compartilhar com você, nosso estimado cliente.</p>

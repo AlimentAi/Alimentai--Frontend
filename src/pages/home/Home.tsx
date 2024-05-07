@@ -1,9 +1,9 @@
 import { House } from '@phosphor-icons/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import foto1 from "../../assets/foto1.jpeg"
-import foto2 from "../../assets/foto2.jpeg"
-import foto3 from "../../assets/foto3.jpeg"
+import foto1 from "../../assets/foto1-sm.jpg"
+import foto2 from "../../assets/foto2-sm.jpg"
+import foto3 from "../../assets/foto3-sm.jpg"
 import { Carousel } from "@material-tailwind/react";
 import Sobre from '../sobre/Sobre'
 

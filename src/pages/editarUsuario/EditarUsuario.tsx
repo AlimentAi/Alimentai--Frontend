@@ -203,7 +203,7 @@ function EditarUsuario() {
         <img src={Logo} className="w-14" alt="" />
       </div>
       <form className="h-full w-full flex flex-col p-4" onSubmit={atualizarUsuario}>
-        <div className="w-full flex gap-4">
+        <div className="w-full flex flex-col md:flex-row gap-4">
           <div className="w-full flex flex-col justify-between items-center gap-4">
             <div className="w-full flex flex-col items-start gap-4">
               <h2 className="text-2xl font-semibold">Dados de contato</h2>

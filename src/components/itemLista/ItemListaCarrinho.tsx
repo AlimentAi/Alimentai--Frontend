@@ -31,12 +31,13 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
   }
 
   function atualizarQuantidade(e: ChangeEvent<HTMLInputElement>) {
-    let value = Number(e.target.value)
+    const value = Number(e.target.value)
     setQuantidade(value);
     alterarQuantidade(id, value)
   }
 
   return (
+    
     <div className="flex flex-col items-center">
         <tr className="w-full h-40 flex items-center bg-transparent rounded-md">
           <td className="w-[50%] h-full flex items-center">
@@ -44,7 +45,7 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
               <img src={produto.foto} alt="" className="w-[12rem] flex" />
             </div>
             <div className="flex flex-1 items-center">
-              <h1 className="w-full text-xl">{produto.nome}</h1>
+              <h1 className="w-full text-xl text-start">{produto.nome}</h1>
             </div>
           </td>
 
@@ -77,9 +78,7 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
                   style: 'currency',
                   currency: 'BRL'}
                 ).format(produto.preco * quantidade)}
-            </td>
 
-            <td className="w-full flex justify-center items-center gap-4">
               <button onClick={() => removerItem(id)} className="text-red-500">
                 <Trash size={24} />
               </button>

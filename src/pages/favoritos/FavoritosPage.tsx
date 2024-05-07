@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Vortex } from 'react-loader-spinner';
 import { useFavorite } from '../../contexts/FavoriteContext';
 import CardProduto from '../../components/produtos/CardProduto';
+import beterrabaHertBroken from '../../assets/beteration/beterraba-heartbroken.png';
+import { Heart } from '@phosphor-icons/react';
 
 function FavoritosPage() {
   const { favorites } = useFavorite();
@@ -12,23 +14,24 @@ function FavoritosPage() {
     setLoading(false);
   }, []);
 
-  const handleFiltrarProdutos = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFiltrarProdutos = (e) => {
     setFiltroProduto(e.target.value);
   };
 
   return (
-    <div className="flex justify-center w-full px-20 my-10">
-      <div className="container flex flex-col flex-container items-center mb-8">
-        <div className="bg-green-200 dark:bg-[#394B3E] py-3 px-10 mb-10 flex items-center rounded-full mb-20 mx-10">
-          <span className='font-bold mr-20' style={{ fontSize: '40px' }}>FAVORITOS</span>
+    <div className="flex justify-center w-full px-20 bg-wallpaper bg-repeat bg-center">
+      <div className="container flex flex-col items-center mb-8">
+        <div className="my-10 bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm py-3 px-10 mb-10 flex items-center rounded-full">
+          <span className="font-bold mr-20" style={{ fontSize: '40px' }}>FAVORITOS</span>
           <input
             type="text"
             placeholder="Pesquisar por produto"
             value={filtroProduto}
             onChange={handleFiltrarProdutos}
-            className='border-slate-800 rounded bg-white dark:bg-[#212b24] px-3 py-1 duration-300'
+            className="border-slate-800 rounded bg-white dark:bg-[#212b24] px-3 py-1 duration-300"
             style={{ width: '400px', marginRight: '20px' }}
           />
+          <Heart size={30} color="gray" />
         </div>
         {loading && (
           <div className="flex justify-center min-h-96">
@@ -42,9 +45,12 @@ function FavoritosPage() {
           </div>
         )}
         {!loading && favorites.length === 0 && (
-          <p className="text-center text-lg font-semibold text-gray-600">
-            Ainda não há Produtos adicionados aos Favoritos
-          </p>
+          <div>
+            <img src={beterrabaHertBroken} alt="Beterraba Heart Broken" className="mx-auto w-96 h-auto" />
+            <p className="text-center text-lg font-semibold text-black-600">
+              Ainda não há Produtos adicionados aos Favoritos
+            </p>
+          </div>
         )}
         {!loading && favorites.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

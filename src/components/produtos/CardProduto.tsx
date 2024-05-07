@@ -87,11 +87,10 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   function editarProduto() {
     navigate(`/editarProduto/${produto.id}`)
   }
-
-  //Testing 
   
   return ( 
-    
+<div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-80 bg-white bg-opacity-15 dark:bg-gray-600 dark:bg-opacity-15 backdrop-blur-sm'>
+
     <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-80'>
          {location.pathname === '/favoritos' ?
         <Trash
@@ -117,10 +116,9 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
         <img src={produto.foto} className='w-full max-h-56' alt={produto.nome} />
       }
       <div className='p-4 flex flex-col justify-center items-center'>
-        <p className='text-start text-2xl font-bold mb-4'>{produto.nome}</p>
-        <p className='w-full h-20 text-sm text-justify py-2'>{produto.descricao}</p>
-        <p>Peso aprox: 250g</p>
-        <p className='text-2xl font-bold text-start my-2'>{Intl.NumberFormat('pt-BR', {
+        <p className='text-start text-2xl font-bold mb-1'>{produto.nome}</p>
+        <p className='w-full h-20 text-sm text-justify py-5'>{produto.descricao}</p>
+        <p className='text-2xl font-bold text-start my-1'>{Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
         }).format(produto.preco)}</p>
@@ -151,6 +149,7 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
           <ShoppingCart size={25} className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-white" />
         </button>}
       </div>
+    </div>
     </div>
   );
 }
