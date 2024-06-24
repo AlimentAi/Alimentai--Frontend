@@ -6,7 +6,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export function Login() {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [caps, setCaps] = useState(false)
 
@@ -47,11 +47,11 @@ export function Login() {
   }, [caps])
 
   return (
-    <div className="w-full h-screen flex">
+    <div className="w-full flex">
       <div className="w-full h-full hidden md:block">
         <div className="w-[50%] h-full bg-image-login bg-no-repeat bg-cover bg-center fixed"></div>
       </div>
-      <div className="w-full h-full flex flex-col justify-center items-start p-4">
+      <div className="w-full h-screen flex flex-col justify-center items-start p-4">
         <Link to='/' className="w-28 z-50">
           <button className="w-full flex items-center gap-1 p-1 rounded-lg text-[#f76c6f] hover:bg-[#c42342] hover:text-white font-bold duration-1000">
             <CaretLeft size={40} />

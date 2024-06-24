@@ -50,7 +50,7 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
           </td>
 
           <div className="w-[50%] flex gap-4">
-            <td className="w-full flex justify-center">
+            <td className="w-full flex items-center justify-center">
               {Intl.NumberFormat(
                 'pt-BR', {
                   style:'currency',
@@ -85,7 +85,6 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
             </td>
           </div>
         </tr>
-      <hr  className="w-[95%]"/>
     </div>
   )
 }
