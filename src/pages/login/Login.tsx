@@ -67,7 +67,7 @@ export function Login() {
                 type="email"
                 name="email"
                 id="email"
-                className="w-full border-b-2 p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                className="w-full border-b-2 p-3 outline-none border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Seu e-mail"
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
               <input
@@ -75,7 +75,7 @@ export function Login() {
                 name="senha"
                 id="senha"
                 placeholder="Sua senha"
-                className="w-full border-b-2 p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                className="w-full border-b-2 p-3 outline-none border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
               <p className={`${caps ? "block" : "hidden"} w-full font-bold text-start text-[#f76c6f]`}>Aviso: CapsLock está ativado!</p>

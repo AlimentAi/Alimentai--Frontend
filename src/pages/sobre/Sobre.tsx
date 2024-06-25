@@ -3,7 +3,7 @@ import React from 'react'
 function Sobre() {
   return (
     <div>
-      <div className='top-8 relative'><h1 className='text-3xl'> Sobre o ALIMENTAi </h1></div>
+      <div className='top-8 relative'><h1 className='text-3xl'> Sobre o AlimentaAi </h1></div>
 
       <div className='flex flex-col flex-center mx-[10%] my-10 m-auto min-h-[62vh] text-justify top-4 relative gap-4'>
         <p className='text-1xl'>Bem-vindo à nossa plataforma dedicada a conectar pequenos produtores e agricultores com consumidores conscientes, apaixonados por produtos frescos e de qualidade. Aqui na nossa comunidade, valorizamos não apenas os alimentos que você compra, mas também as histórias por trás deles - histórias de trabalho árduo, dedicação à terra e um compromisso com práticas sustentáveis.</p>
@@ -22,7 +22,7 @@ function Sobre() {
 
         <p className='text-1xl'>Atenciosamente,</p>
 
-        <p className='text-1xl'>ALIMENTAi - Raízes Sustentáveis</p>
+        <p className='text-1xl'>AlimentaAi - Raízes Sustentáveis</p>
       </div>
     </div>
   )

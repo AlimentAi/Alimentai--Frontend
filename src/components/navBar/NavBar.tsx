@@ -150,13 +150,13 @@ export function NavBar() {
               <li><Link id="favoritos" to="/favoritos" className="hidden md:block hover:text-[#c42342] duration-500 p-4">Favoritos</Link></li>
             }
             {usuario.token !== '' && usuario.tipo === 'produtor' &&
-              <li><Link id='areaVendedor' to='/areaVendedor' className='hidden md:block hover:text-[#c42342] duration-500 p-4 flex gap-1'>
+              <li><Link id='areaVendedor' to='/areaVendedor' className='flex hover:text-[#c42342] duration-500 p-4 gap-1'>
                 <Storefront size={24} /> Área do Vendedor</Link>
               </li>
             }
             {usuario.token !== '' && (usuario.tipo === 'consumidor' || usuario.tipo === undefined) &&
               <li >
-                <Link id='carrinho' to='/carrinho' className='hidden md:block hover:text-[#c42342] duration-500 p-4 flex gap-2 items-center'>
+                <Link id='carrinho' to='/carrinho' className='flex hover:text-[#c42342] duration-500 p-4 gap-2 items-center'>
                   <ShoppingCartSimple className="w-8 h-8 flex text-[#629d60] bg-[#e4f6e3] rounded-full p-2" size={24} />
                   <span className="text-start text-sm font-medium">Meu Carrinho</span>
                 </Link>

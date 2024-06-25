@@ -10,10 +10,10 @@ import Sobre from '../sobre/Sobre'
 function Home() {
   return (
     <>
-      <div className='flex justify-center border-b-4 border-neutral-200 relative py-5'>
+      <div className='flex justify-center border-neutral-200 relative'>
         <Carousel
           transition={{ duration: 2 }}
-          className="rounded-xl w-full h-96 max-w-5xl mx-4"
+          className="w-full h-[45rem]"
           autoplay={true}
           loop={true}
           placeholder=""
@@ -23,17 +23,17 @@ function Home() {
           <img
             src={foto1}
             alt="image 1"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-fill"
           />
           <img
             src={foto2}
             alt="image 2"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-fill"
           />
           <img
             src={foto3}
             alt="image 3"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-fill"
           />
         </Carousel>
       </div>

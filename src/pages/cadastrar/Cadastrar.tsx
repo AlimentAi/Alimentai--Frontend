@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { Basket, CaretLeft, Carrot } from "@phosphor-icons/react";
 import Logo from "../../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
@@ -227,7 +228,7 @@ export function Cadastrar() {
           </button>
         </Link>
 
-        <form className="w-full flex flex-wrap justify-center items-center gap-4 pb-16 pt-8" onSubmit={cadastrarNovoUsuario}>
+        <form className="w-full h-screen flex flex-wrap justify-center items-center gap-4 pb-16 pt-8" onSubmit={cadastrarNovoUsuario}>
           <div className="w-[80%] flex flex-col justify-center items-center gap-4">
             <div className="w-[90%] justify-center flex items-center">
               <h1 className="text-3xl font-bold">CADASTRE-SE</h1>
@@ -235,17 +236,17 @@ export function Cadastrar() {
             </div>
 
             <div className="w-[90%] flex flex-col items-start gap-4">
-              <p className="m-4 font-bold">Crie sua vitrine online e ganhe visibilidade de milhares de clientes</p>
+              <p className="font-bold">Crie sua vitrine online e ganhe visibilidade de milhares de clientes</p>
               <h2 className="text-2xl font-semibold">Dados de contato</h2>
               <input type="text"
-                className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                className="w-full border-2 rounded-lg p-3 outline-none border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Seu nome / Nome da empresa"
                 name="nome"
                 required
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} />
               <input
                 type="email"
-                className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                className="w-full border-2 rounded-lg p-3 outline-none border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="E-mail"
                 name="email"
                 required
@@ -256,7 +257,7 @@ export function Cadastrar() {
               <h2 className="text-2xl font-semibold">Dados de acesso</h2>
               <input
                 type="password"
-                className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                className="w-full border-2 rounded-lg p-3 outline-none border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Sua senha"
                 name="senha"
                 onFocus={mostrarRequisitos}
@@ -265,7 +266,7 @@ export function Cadastrar() {
                 onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarRequisitos(e)} />
               <input
                 type="password"
-                className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
+                className="w-full border-2 rounded-lg p-3 outline-none border-[#cfcccc] hover:border-[#c42342] duration-1000 dark:bg-zinc-800"
                 placeholder="Confirme sua senha"
                 name="confirmarSenha"
                 required
@@ -292,7 +293,7 @@ export function Cadastrar() {
                         if (e.target.checked) atualizarEstado(e);
                       }
                     } />
-                  <label htmlFor="consumidor" className="flex flex-col items-center">
+                  <label htmlFor="consumidor" className="flex flex-col items-center p-4 rounded-md hover:cursor-pointer transition duration-500 hover:bg-zinc-800">
                     <Basket size={42} />
                     Sou consumidor
                   </label>
@@ -309,7 +310,7 @@ export function Cadastrar() {
                         if (e.target.checked) atualizarEstado(e)
                       }
                     } />
-                  <label htmlFor="produtor" className="flex flex-col items-center">
+                  <label htmlFor="produtor" className="flex flex-col items-center p-4 rounded-md hover:cursor-pointer transition duration-300 hover:bg-zinc-800">
                     <Carrot size={42} />
                     Sou produtor
                   </label>
