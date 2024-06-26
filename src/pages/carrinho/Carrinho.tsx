@@ -64,7 +64,7 @@ export function Carrinho() {
           )}
         </table>
 
-        <div className="flex flex-col items-start gap-4 bg-transparent p-6 rounded-md shadow-xl">
+        <div className="flex flex-col items-start justify-between gap-4 bg-transparent p-6 rounded-md shadow-xl">
           <h1 className="w-96 text-2xl text-start font-bold pb-1">Resumo do pedido</h1>
           {!freteGratis && (
             <p className="font-semibold text-[#607571]">

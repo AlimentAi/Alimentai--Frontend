@@ -31,10 +31,9 @@ export function CartProvider({ children }: CartProviderProps) {
 
   useEffect(() => {
     let total = 0;
-    carrinho.forEach((item) => {
-      total += item.quantidadeDesejada * item.produto.preco;
+    carrinho.forEach((item) => { 
+      setValorTotal(total += item.quantidadeDesejada * item.produto.preco);
     });
-    setValorTotal(total);
 
     const novoValorRestante = total < 99 ? 99 - total : 0;
     setValorRestante(novoValorRestante);
@@ -92,7 +91,7 @@ export function CartProvider({ children }: CartProviderProps) {
     });
     setValorTotal(total);
 
-    let restante = total < 99 ? 99 - total : 0;
+    const restante = total < 99 ? 99 - total : 0;
     setValorRestante(restante);
 
     setCarrinho(novoCarrinho);

@@ -39,10 +39,11 @@ export function ItemListaCarrinho({id, produto, quantidadeDesejada}: ItemListaCa
   return (
     
     <div className="flex flex-col items-center">
+      <hr className="w-full" />
         <tr className="w-full h-40 flex items-center bg-transparent rounded-md">
           <td className="w-[50%] h-full flex items-center">
             <div className="w-[40%] p-6 flex items-center">
-              <img src={produto.foto} alt="" className="w-[12rem] flex" />
+              <img src={produto.foto} alt="" className="size-40 flex" />
             </div>
             <div className="flex flex-1 items-center">
               <h1 className="w-full text-xl text-start">{produto.nome}</h1>
