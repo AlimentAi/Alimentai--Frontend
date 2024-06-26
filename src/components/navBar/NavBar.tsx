@@ -123,7 +123,7 @@ export function NavBar() {
           <Link id="navbar-logo" to="/">
             <div className="flex items-center gap-1">
               <img src={Logo} className="w-16" alt="Logo" />
-              <h1 className="text-sm md:text-xl font-semibold">AlimentaA! - Raizes Sustentáveis</h1>
+              <h1 className="text-sm md:text-xl font-semibold">AlimentaAI - Raizes Sustentáveis</h1>
             </div>
           </Link>
 
@@ -142,9 +142,6 @@ export function NavBar() {
             }
             {usuario.token !== '' && (usuario.tipo === 'produtor' || usuario.tipo === 'administrador') &&
               <li><Link id='categorias' to='/listaCategorias' className='hidden md:block hover:text-[#c42342] duration-500 p-4'>Categorias</Link></li>
-            }
-            {usuario.token !== '' &&
-              <li><Link id='sobre' to='/sobre' className='hidden md:block hover:text-[#c42342] duration-500 p-4'>Sobre</Link></li>
             }
             {usuario.token !== "" &&
               <li><Link id="favoritos" to="/favoritos" className="hidden md:block hover:text-[#c42342] duration-500 p-4">Favoritos</Link></li>
@@ -190,9 +187,6 @@ export function NavBar() {
                   </Link>}
                 <Link to="/editarUsuario" className="hover:text-[#c42342] duration-500 p-2 w-full">
                   <div className="flex gap-2"><UserGear size={32} /> Configurações</div>
-                </Link>
-                <Link id='sobre' to='/sobre' className='md:hidden hover:text-[#c42342] duration-500 p-2 w-full'>
-                  <div className="flex gap-2"><Info size={32}/>Sobre</div>
                 </Link>
                 <Link to="/" className="hover:text-[#c42342] duration-500 p-2 w-full" onClick={handleLogout}>
                   <div className="flex gap-2"><SignOut size={32} /> Sair</div>

@@ -9,7 +9,7 @@ import { toastAlerta } from '../../utils/toastAlerta'
 function DeletarProduto() {
     const [produto, setProduto] = useState<Produto>({} as Produto)
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
 
     const { id } = useParams <{ id: string }>()
 
@@ -64,7 +64,7 @@ async function deletarProduto() {
     try {
         await deletar(`/produtos/${id}`, {
             headers: {
-                'Autrorization': token
+                Authorization: token
             }
         })
 
@@ -87,10 +87,10 @@ async function deletarProduto() {
                 <p className="p-5 text-2xl font-semibold h-full">{produto.descricao}</p>
 
                 <div>
-                    <button onClick={retornar} className="w-full text-slate-100 hover:bg-sky-900 flex items-center justify-center py-2 rounded-lg duration-300">
+                    <button onClick={retornar} className="w-full text-slate-100 bg-sky-600 hover:bg-sky-900 flex items-center justify-center py-2 rounded-lg duration-300">
                         <button className="rounded-lg">Não</button>
                     </button>
-                    <button onClick={DeletarProduto} className="text-slate-100 bg-red-500 hover:bg-rose-700 w-full flex items-center justify-center py-2 rounded-lg duration-300">
+                    <button onClick={deletarProduto} className="text-slate-100 bg-red-500 hover:bg-rose-700 w-full flex items-center justify-center py-2 rounded-lg duration-300">
                         <button className="rounded-lg">Sim</button>
                     </button>
                 </div>

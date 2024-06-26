@@ -6,6 +6,7 @@ import { SearchBar } from "../../components/searchBar/SearchBar";
 import { CardVendedor } from "./CardVendedor";
 import { buscar } from "../../services/Service";
 import Produto from "../../models/Produto";
+import beterrabaHertBroken from '../../assets/beteration/beterraba-heartbroken.png';
 
 
 export function AreaVendedor() {
@@ -43,7 +44,7 @@ export function AreaVendedor() {
   const produtosFiltrados = produtos.filter(produto => produto.usuario.id === usuario.id && produto.nome.toLowerCase().includes(filtroProduto.toLowerCase()));
 
   return (
-    <div className="flex justify-center w-full px-20 bg-wallpaper bg-repeat bg-center">
+    <div className="flex justify-center w-full h-screen px-20 bg-wallpaper bg-repeat bg-center">
     <div className="w-full flex flex-col items-center">
       <div className="w-[70%] flex items-center justify-between pr-2 pl-2 font-bold my-10">
       </div>
@@ -52,6 +53,14 @@ export function AreaVendedor() {
         {produtosFiltrados.map((produto) => (
           <CardVendedor key={produto.id} produto={produto} />
         ))}
+        {produtosFiltrados.length === 0 && (
+          <div>
+            <img src={beterrabaHertBroken} alt="Beterraba Heart Broken" className="mx-auto w-96 h-auto" />
+            <p className="text-center text-lg font-semibold text-black-600">
+              Ainda não há Produtos adicionados
+            </p>
+          </div>
+        )}
       </div>
     </div>
     </div>

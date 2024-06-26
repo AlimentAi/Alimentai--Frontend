@@ -74,7 +74,7 @@ function ListaProdutos() {
   const cadastrarProduto = (
     <Link to='/cadastrarProduto'>
       <button
-        className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-[#212b24] dark:text-white hover:text-black hover:bg-white dark:hover:bg-[#212b24]'} transform hover:scale-110 transition-all duration-300`}
+        className={`p-2 border-3 rounded-lg border-black dark:border-white font-semibold ${'bg-white dark:bg-white dark:text-black hover:text-black hover:bg-white dark:hover:bg-gray-200'} transform hover:scale-110 transition-all duration-300`}
         style={{ fontSize: '15px' }}
       >
         Cadastrar novo Produto
@@ -83,7 +83,7 @@ function ListaProdutos() {
   )
 
   return (
-    <>
+    <div className='bg-wallpaper bg-repeat bg-center'>
       {produtos.length === 0 && (
         <>
           <div className="flex flex-col items-center justify-center my-4 gap-4">
@@ -101,11 +101,11 @@ function ListaProdutos() {
           </div>
         </>
       )}
-      <div className="container justify-center mx-auto px-20 bg-wallpaper bg-repeat bg-center">
+      <div className="container justify-center mx-auto px-20 pb-10">
         <div className="">
           {produtos.length !== 0 && (
             <>
-              <div className={'my-10 bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 py-3 px-10 mb-10 flex flex-col md:flex-row items-center rounded-full gap-4'}>
+              <div className={'my-10 bg-[#b86c9f] bg-opacity-80 backdrop-blur-sm dark:bg-[#b86c9f] dark:bg-opacity-30 py-3 px-3 mb-10 flex flex-col md:flex-row justify-between items-center rounded-md gap-4'}>
                 <span className='font-bold text-4xl'>PRODUTOS</span>
                 <div className='flex'>
                   <select
@@ -125,7 +125,7 @@ function ListaProdutos() {
                     placeholder="Pesquisar por produto"
                     value={filtroProduto}
                     onChange={handleFiltrarProdutos}
-                    className='border-slate-800 rounded bg-white dark:bg-[#212b24] hidden md:block mx-auto px-3 py-1 duration-300'
+                    className='border-slate-800 rounded bg-white dark:bg-white hidden md:block mx-auto px-3 py-1 duration-300'
                   />
                 </div>
                 {(usuario.tipo === "produtor" || usuario.tipo === "administrador") && cadastrarProduto}
@@ -139,7 +139,7 @@ function ListaProdutos() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

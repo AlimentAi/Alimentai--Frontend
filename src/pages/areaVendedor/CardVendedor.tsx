@@ -30,19 +30,21 @@ export function CardVendedor({ produto }: CardVendedorProps) {
             <h2 className="text-sm p-2 font-semibold">Estoque: {produto.quantidade}</h2>
           </div>
         </div>
-        <div className="m-2 rounded-xl flex overflow-hidden w-40">
-          <button
-            onClick={editarProduto}
-            className="p-1 bg-[#4C5857] dark:bg-[#3C3837] hover:bg-[#2E3736] dark:hover:bg-[#2E3736] text-white text-lg font-semibold px-4 duration-300"
-          >
-            Editar
-            <PencilSimpleLine size={20} className="w-full cursor-pointer text-white" />
-          </button>
-          <button
-            onClick={deletarProduto}
-            className="w-full p-1 text-slate-100 bg-[#f76c6f] hover:bg-[#ae3235]">
-            <Trash size={28}/>
-          </button>
+        <div className="flex items-center">
+          <div className="flex p-4">
+            <button
+              onClick={editarProduto}
+              className="flex p-1.5 items-center rounded-l-lg bg-[#4C5857] dark:bg-[#3C3837] hover:bg-[#2E3736] dark:hover:bg-[#2E3736] text-white text-md font-semibold duration-300"
+            >
+              <span>Editar</span>
+              <PencilSimpleLine size={20}/>
+            </button>
+            <button
+              onClick={deletarProduto}
+              className="w-full px-1.5 rounded-r-lg text-slate-100 bg-[#f76c6f] hover:bg-[#ae3235]">
+              <Trash size={20}/>
+            </button>
+          </div>
         </div>
       </div>
     </div>

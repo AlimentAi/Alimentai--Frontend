@@ -26,7 +26,7 @@ export function Carrinho() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-2 pt-20 p-8">
+    <div className="w-full h-screen flex flex-col items-center gap-2 pt-20 p-8">
       <SearchBar titulo="Meu Carrinho" handleFiltrarProdutos={filtrarProdutos} />
       <div className="w-[90%] flex flex-col md:flex-row gap-12">
         <table className="w-full flex flex-col border-[1px] rounded-md">

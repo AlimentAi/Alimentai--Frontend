@@ -19,7 +19,7 @@ function FavoritosPage() {
   };
 
   return (
-    <div className="flex justify-center w-full px-20 bg-wallpaper bg-repeat bg-center">
+    <div className="flex justify-center w-full h-screen px-20 bg-wallpaper bg-repeat bg-center">
       <div className="container flex flex-col items-center mb-8">
         <div className="my-10 bg-green-300 bg-opacity-50 backdrop-blur-sm dark:bg-[#394B3E] dark:bg-opacity-30 backdrop-blur-sm py-3 px-10 mb-10 flex items-center rounded-full">
           <span className="font-bold mr-20" style={{ fontSize: '40px' }}>FAVORITOS</span>

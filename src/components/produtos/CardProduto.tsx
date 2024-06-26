@@ -21,7 +21,7 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   const {adicionarItem} = useContext(CartContext)
 
   const navigate = useNavigate();
-  let location = useLocation();
+  const location = useLocation();
   
   const { addFavorite, removeFavorite, favorites } = useFavorite();
 
@@ -91,7 +91,7 @@ function CardProduto({ produto, editable }: CardProdutoProps) {
   return ( 
 <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-80 bg-white bg-opacity-15 dark:bg-gray-600 dark:bg-opacity-15 backdrop-blur-sm'>
 
-    <div className='relative border border-gray-300 shadow-md rounded-lg overflow-hidden max-w-80'>
+    <div className='relative shadow-md rounded-lg overflow-hidden max-w-80'>
          {location.pathname === '/favoritos' ?
         <Trash
           size={40}
