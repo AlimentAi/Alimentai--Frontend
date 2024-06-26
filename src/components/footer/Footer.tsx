@@ -7,7 +7,7 @@ function Footer() {
   const token = useContext(AuthContext).usuario.token
 
   useEffect(() => {
-    let footer = document.querySelector('#footer')
+    const footer = document.querySelector('#footer')
     if (link.includes('login') || link.includes('cadastrar') || token === '') {
       footer?.classList.add('hidden')
     } else {

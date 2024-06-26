@@ -26,7 +26,7 @@ export function Carrinho() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center gap-2 pt-20 p-8">
+    <div className="w-full h-screen flex flex-col items-center gap-2 pt-10 p-8">
       <SearchBar titulo="Meu Carrinho" handleFiltrarProdutos={filtrarProdutos} />
       <div className="w-[90%] flex flex-col md:flex-row gap-12">
         <table className="w-full flex flex-col border-[1px] rounded-md">
@@ -73,8 +73,8 @@ export function Carrinho() {
           )}
           {freteGratis && (
             <>
-              <div className="flex justify-center">
-                <img src={beterrabaMotoboy} alt="Motoboy" className="w-30 h-30" />
+              <div className="w-full flex justify-center">
+                <img src={beterrabaMotoboy} alt="Motoboy" className="size-60" />
               </div>
               <p className="font-semibold text-[#607571] text-center">Parabéns, você conseguiu frete grátis!</p>
             </>
@@ -83,18 +83,29 @@ export function Carrinho() {
             <div className="w-[16%] bg-emerald-400 h-2.5 rounded-full" style={{ width: `${percentual}%` }}></div>
           </div>
           <div className="flex w-full items-center justify-between">
-            <span className="text-sm text-start font-semibold text-[#607571]">{valorTotal}</span>
+            <span className="text-sm text-start font-semibold text-[#607571]">{valorTotal},00</span>
             <span className="text-sm text-end font-semibold text-[#607571]">R$ 99,00</span>
           </div>
           <hr className="w-full" />
-          <div className="flex items-center justify-center">
-  <button
-    disabled={!podeFinalizarCompra}
-    className={`w-full flex p-4 rounded-lg text-2xl text-center font-bold ${!podeFinalizarCompra ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 text-white"}`}
-  >
-    Finalizar Compra
-  </button>
-</div>
+          <div className="w-full flex flex-col">
+            <h2 className="w-full flex font-semibold text-[#607571] text-center justify-between"><span>Subtotal</span> <span>R$ {valorTotal},00</span></h2>
+            <h2 className="w-full flex font-semibold text-[#607571] text-center justify-between">Frete <span>A calcular</span></h2>
+            <h2 className="w-full flex font-semibold text-[#607571] text-center justify-between">Total <span>R$ {valorTotal},00</span></h2>
+          </div>
+          <hr className="w-full" />
+          <div className="w-full flex flex-col gap-2 items-center justify-center">
+            <button
+              disabled={!podeFinalizarCompra}
+              className={`w-full flex p-4 rounded-lg text-2xl text-center justify-center font-bold ${!podeFinalizarCompra ? "bg-gray-400 cursor-not-allowed" : "bg-[#95507e] text-white"}`}
+            >
+              Finalizar Compra
+            </button>
+            <Link
+             to="/listaProdutos" className="w-full flex p-4 rounded-lg text-2xl text-center justify-center border-[1px] border-solid border-[#95507e] font-bold bg-white text-[#95507e]"
+            >
+              Continuar Comprando
+            </Link>
+          </div>
 
         </div>
       </div>

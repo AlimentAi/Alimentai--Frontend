@@ -113,7 +113,7 @@ function ListaProdutos() {
                     id="categoria"
                     value={categoriaSelecionada}
                     onChange={handleSelecionarCategoria}
-                    className='border-slate-800 rounded bg-transparent mx-4'
+                    className='border-slate-800 rounded bg-white mx-4'
                   >
                     <option value="">Todas as categorias</option>
                     {categorias.map((categoria) => (
