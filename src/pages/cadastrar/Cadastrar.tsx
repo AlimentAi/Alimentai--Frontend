@@ -293,7 +293,7 @@ export function Cadastrar() {
                         if (e.target.checked) atualizarEstado(e);
                       }
                     } />
-                  <label htmlFor="consumidor" className="flex flex-col items-center p-4 rounded-md hover:cursor-pointer transition duration-500 hover:bg-zinc-800">
+                  <label htmlFor="consumidor" className="flex flex-col items-center p-4 rounded-md hover:cursor-pointer hover:bg-gray-200 transition duration-500 dark:hover:bg-zinc-800">
                     <Basket size={42} />
                     Sou consumidor
                   </label>
@@ -310,7 +310,7 @@ export function Cadastrar() {
                         if (e.target.checked) atualizarEstado(e)
                       }
                     } />
-                  <label htmlFor="produtor" className="flex flex-col items-center p-4 rounded-md hover:cursor-pointer transition duration-300 hover:bg-zinc-800">
+                  <label htmlFor="produtor" className="flex flex-col items-center p-4 rounded-md hover:cursor-pointer hover:bg-gray-200 transition duration-500 dark:hover:bg-zinc-800">
                     <Carrot size={42} />
                     Sou produtor
                   </label>
